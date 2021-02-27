@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
+const morgan = require('morgan');
+
+
 
 const mongoose = require('mongoose');
 const Campground = require('./models/campground');
@@ -16,8 +19,24 @@ db.once('open', () => {
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+// Here app.use gets executed before any of the matching route callback functions,
+// so basically here is the place we tell express to do something before going to the routes.
+// although app.use can be used to handle req, res.
+// All the app.use/get/put/post are middleware functions that are chained together in the order they are defined.
+// so once the first middleware function call is done, the next middleware function in the sequence needs to be called for which the next() is used.
+// first middleware
 app.use(express.urlencoded({ extended: true }));
+// second middleware
 app.use(methodOverride('_method'));
+// third middleware
+app.use(morgan('tiny'));
+// My Middleware function
+app.use((req, res, next) => {
+    console.log("Request recieved with query: ", req.query);
+    next();
+    // not advised
+    console.log("After calling the middleware");
+})
 
 app.get('/', (req, res) => {
     res.render('homePage');
