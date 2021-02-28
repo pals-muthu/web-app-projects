@@ -3,8 +3,7 @@ const app = express();
 const path = require('path');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
-
-
+const ejsMate = require('ejs-mate');
 
 const mongoose = require('mongoose');
 const Campground = require('./models/campground');
@@ -17,6 +16,7 @@ db.once('open', () => {
     console.log("DB connected");
 });
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 // Here app.use gets executed before any of the matching route callback functions,
@@ -32,7 +32,7 @@ app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 // My Middleware function
 app.use((req, res, next) => {
-    console.log("Request recieved with query: ", req.query);
+    console.log("Request received with query: ", req.query);
     next();
     // not advised
     console.log("After calling the middleware");
@@ -83,6 +83,10 @@ app.delete('/campgrounds/:id', async (req, res) => {
     const _campground = await Campground.findByIdAndDelete(req.params.id);
     // console.log("deleted: ", _campground);
     res.redirect(`/campgrounds`);
+})
+
+app.use((req, res) => {
+    res.status(404).send('PAGE NOT FOUND');
 })
 
 app.listen('4000', () => {
