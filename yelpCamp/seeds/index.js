@@ -23,7 +23,10 @@ const populateData = async () => {
         const random1000 = Math.floor(Math.random() * 1000);
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
-            title: `${sampleData(descriptors)} ${sampleData(places)}`
+            title: `${sampleData(descriptors)} ${sampleData(places)}`,
+            image: 'https://source.unsplash.com/collection/8862306/800X600',
+            description: 'nada',
+            price: Math.floor(Math.random() * 20) + 10
         })
         await camp.save();
         console.log(camp);
