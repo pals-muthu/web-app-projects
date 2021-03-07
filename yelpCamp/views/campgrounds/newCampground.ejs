@@ -3,32 +3,33 @@
         <div class="row">
             <h1 class="text-center">New Campground</h1>
             <div class="col-6 offset-3">
-                <form action="/campgrounds" method="POST">
+                <form action="/campgrounds" method="POST" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="campground[title]" id="title"
-                            placeholder="Frog Lake">
+                            placeholder="Frog Lake" required>
                     </div>
                     <div class="mb-3">
                         <label for="location" class="form-label">Location</label>
                         <input type="text" class="form-control" name="campground[location]" id="location"
-                            placeholder="Houston, Texas">
+                            placeholder="Houston, Texas" required>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image URL</label>
-                        <input type="text" class="form-control" name="campground[image]" id="image">
+                        <input type="text" class="form-control" name="campground[image]" id="image" required>
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Price</label>
                         <div class="input-group">
                             <span class="input-group-text">$</span>
-                            <input type="number" step="0.01" class="form-control" id="price" name="campground[price]">
+                            <input type="number" step="0.01" class="form-control" id="price" name="campground[price]"
+                                required>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea type="text" class="form-control" name="campground[description]"
-                            id="description"></textarea>
+                        <textarea type="text" class="form-control" name="campground[description]" id="description"
+                            required></textarea>
                     </div>
                     <div class="mb-3">
                         <button class="btn btn-success">Add Campground</button>
