@@ -1,43 +1,43 @@
 <% layout('layouts/boilerplate') %>
     <div class="container">
         <div class="row">
-            <div class="col-8 offset-2">
+            <div class="col-auto col-lg-8 offset-lg-2">
                 <h1>
                     <%=campground.title%>
                 </h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-8 offset-2">
+            <div class="col-auto col-lg-8 offset-lg-2">
                 <h2>
                     <%=campground.location%>
                 </h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-8 offset-2">
+            <div class="col-auto col-lg-8 offset-lg-2">
                 <img src="<%= campground.image %>" alt="" style="width: 100%;">
             </div>
         </div>
         <div class="row">
-            <div class="col-8 offset-2 mt-2">
+            <div class="col-auto col-lg-8 offset-lg-2 mt-2">
                 <p>
                     <%= campground.description %>
                 </p>
             </div>
         </div>
         <div class="row">
-            <div class="col-8 offset-2 mt-2">
+            <div class="col-auto col-lg-8 offset-lg-2 mt-2">
                 <p>
                     $<%= campground.price %>/night
                 </p>
             </div>
         </div>
         <footer class="row mb-2">
-            <div class="col-auto offset-2">
+            <div class="col-auto col-lg-4 offset-lg-2 mt-2">
                 <a class="btn btn-outline-warning" href="<%=`/campgrounds/${campground._id}/edit`%>">Edit Campground</a>
             </div>
-            <div class="col-auto">
+            <div class="col-auto col-lg-4 mt-2">
                 <form action="<%=`/campgrounds/${campground._id}?_method=DELETE`%>" method="POST">
                     <button class="btn btn-outline-danger">Delete Campground</button>
                 </form>
