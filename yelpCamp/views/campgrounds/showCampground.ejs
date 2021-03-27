@@ -1,46 +1,87 @@
 <% layout('layouts/boilerplate') %>
-    <div class="container">
+    <div class="container mb-3">
         <div class="row">
-            <div class="col-auto col-lg-8 offset-lg-2">
-                <h1>
-                    <%=campground.title%>
-                </h1>
+            <div class="col-12 col-lg-8">
+                <div class="col-auto col-lg-8 offset-lg-2">
+                    <h1>
+                        <%=campground.title%>
+                    </h1>
+                </div>
+                <div class="col-auto col-lg-8 offset-lg-2">
+                    <h2>
+                        <%=campground.location%>
+                    </h2>
+                </div>
+                <div class="col-auto col-lg-8 offset-lg-2">
+                    <img src="<%= campground.image %>" alt="" style="width: 100%;">
+                </div>
+                <div class="col-auto col-lg-8 offset-lg-2 mt-2">
+                    <p>
+                        <%= campground.description %>
+                    </p>
+                </div>
+                <div class="col-auto col-lg-8 offset-lg-2 mt-2">
+                    <p>
+                        $<%= campground.price %>/night
+                    </p>
+                </div>
+                <footer class="row mb-2">
+                    <div class="col-auto col-lg-4 offset-lg-2 mt-2">
+                        <a class="btn btn-outline-warning" href="<%=`/campgrounds/${campground._id}/edit`%>">Edit
+                            Campground</a>
+                    </div>
+                    <div class="col-auto col-lg-4 mt-2">
+                        <form action="<%=`/campgrounds/${campground._id}?_method=DELETE`%>" method="POST">
+                            <button class="btn btn-outline-danger">Delete Campground</button>
+                        </form>
+                    </div>
+                </footer>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-auto col-lg-8 offset-lg-2">
-                <h2>
-                    <%=campground.location%>
-                </h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-auto col-lg-8 offset-lg-2">
-                <img src="<%= campground.image %>" alt="" style="width: 100%;">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-auto col-lg-8 offset-lg-2 mt-2">
-                <p>
-                    <%= campground.description %>
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-auto col-lg-8 offset-lg-2 mt-2">
-                <p>
-                    $<%= campground.price %>/night
-                </p>
-            </div>
-        </div>
-        <footer class="row mb-2">
-            <div class="col-auto col-lg-4 offset-lg-2 mt-2">
-                <a class="btn btn-outline-warning" href="<%=`/campgrounds/${campground._id}/edit`%>">Edit Campground</a>
-            </div>
-            <div class="col-auto col-lg-4 mt-2">
-                <form action="<%=`/campgrounds/${campground._id}?_method=DELETE`%>" method="POST">
-                    <button class="btn btn-outline-danger">Delete Campground</button>
+            <div class="col-12 col-lg-4 pt-3">
+                <div class="col">
+                    <h2>Leave a Review</h2>
+                </div>
+                <form class="col needs-validation" action="/campgrounds/<%= campground._id %>/reviews" method="POST"
+                    novalidate>
+                    <div class="mb-3">
+                        <label class="form-label" for="rating">Rating</label>
+                        <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"
+                            required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-outline-success" type="submit">Submit</button>
+                    </div>
                 </form>
+                <hr>
+                <div class="col">
+                    <h2>User Reviews</h2>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <% for(let review of campground.reviews) { %>
+                            <div class="card m-2">
+                                <h5 class="card-header">
+                                    <%= review.rating %> Star(s)
+                                </h5>
+                                <div class="card-body">
+                                    <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                                    <p class="card-text">
+                                        <%= review.body %>
+                                    </p>
+                                    <form
+                                        action="<%=`/campgrounds/${campground._id}/reviews/${review._id}?_method=DELETE`%>"
+                                        method="POST">
+                                        <button class="btn btn-outline-danger">Delete Review</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </div>
     </div>
