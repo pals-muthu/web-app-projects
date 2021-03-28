@@ -9,7 +9,7 @@ const ExpressError = require('./utils/ExpressError');
 // ------------------------------------------------------------------------------------
 // MONGOOSE SPECIFICS
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/yelp-camp', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/yelp-camp', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -39,22 +39,56 @@ app.use((req, res, next) => {
     console.log("Request received with query: ", req.query);
     next();
     // not advised
-    console.log("After calling the middleware");
+    // console.log("After calling the middleware");
 });
+
+app.use(express.static(path.join(__dirname, "public")));
+
+// ------------------------------------------------------------------------------------
+// EXPRESS SESSION MIDDLEWARE
+
+const session = require('express-session');
+
+const sessionConfig = {
+    secret: 'secret-TBD',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + (1000 * 60 * 60 * 24 * 7), // For IE type browsers
+        maxAge: (1000 * 60 * 60 * 24 * 7)
+    }
+}
+
+app.use(session(sessionConfig));
+
+// ------------------------------------------------------------------------------------
+// FLASH MIDDLEWARE
+
+const flash = require('connect-flash');
+
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
+
+// ------------------------------------------------------------------------------------
+// ALL ROUTE MIDDLEWARE FUNCTIONS
 
 app.get('/', (req, res) => {
     res.render('homePage');
 });
 
-// ------------------------------------------------------------------------------------
-// ALL ROUTE MIDDLEWARE FUNCTIONS
 const { campgroundRouter, reviewRouter } = require('./routes');
 
 app.use('/campgrounds', campgroundRouter);
 app.use('/campgrounds/:id/reviews', reviewRouter);
 
 // ------------------------------------------------------------------------------------
-// ERROR HANDLING
+// ERROR HANDLING MIDDLEWARE
 app.use((req, res, next) => {
     // res.status(404).send('PAGE NOT FOUND');
     next(new ExpressError("PAGE NOT FOUND!!!", 404));
@@ -66,8 +100,8 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('errorPage', { statusCode, message, stack });
 });
 
-app.listen('4000', () => {
-    console.log("Listening on port 4000");
-});
-
 // ------------------------------------------------------------------------------------
+
+app.listen('4000', () => {
+    console.log("Listening on port 8000 on localhost and 12000 broadcast");
+});
