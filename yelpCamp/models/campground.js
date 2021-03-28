@@ -35,10 +35,10 @@ CampgroundSchema.post('findOneAndDelete', async function (data) {
 });
 
 CampgroundSchema.methods.DeleteReview = async function (reviewID) {
-    console.log("Deleting Review: ", reviewID);
-    console.log("Old reviews: ", this.reviews);
+    // console.log("Deleting Review: ", reviewID);
+    // console.log("Old reviews: ", this.reviews);
     this.reviews = this.reviews.filter(_id => _id !== reviewID);
-    console.log("new reviews: ", this.reviews);
+    // console.log("new reviews: ", this.reviews);
     await Review.findByIdAndDelete(reviewID);
     await this.save();
 }
