@@ -1,45 +1,46 @@
 <% layout('layouts/boilerplate') %>
     <link rel="stylesheet" href="/styles/app.css">
+    <link rel="stylesheet" href="/styles/showCampground.css">
     <div class="container mb-3">
         <div class="row">
             <div class="col-12 col-lg-8">
-                <div class="col-auto col-lg-8 offset-lg-2">
+                <div class="col-auto col-lg-8">
                     <h1>
                         <%=campground.title%>
                     </h1>
                 </div>
-                <div class="col-auto col-lg-8 offset-lg-2">
+                <div class="col-auto col-lg-8">
                     <h2>
                         <%=campground.location%>
                     </h2>
                 </div>
-                <div class="col-auto col-lg-8 offset-lg-2">
+                <div class="col-auto col-lg-8">
                     <img src="<%= campground.image %>" alt="" style="width: 100%;">
                 </div>
-                <div class="col-auto col-lg-8 offset-lg-2 mt-2">
+                <div class="col-auto col-lg-8 mt-2">
                     <p>
                         <%= campground.description %>
                     </p>
                 </div>
-                <div class="col-auto col-lg-8 offset-lg-2 mt-2">
+                <div class="col-auto col-lg-8 mt-2">
                     <p>
                         $<%= campground.price %>/night
                     </p>
                 </div>
                 <footer class="row mb-2">
-                    <div class="col-auto col-lg-4 offset-lg-2 mt-2">
+                    <div class="col-auto col-md-4 mt-2">
                         <a class="btn btn-outline-warning" href="<%=`/campgrounds/${campground._id}/edit`%>">Edit
                             Campground</a>
                     </div>
-                    <div class="col-auto col-lg-4 mt-2">
+                    <div class="col-auto col-md-4 mt-2">
                         <form action="<%=`/campgrounds/${campground._id}?_method=DELETE`%>" method="POST">
                             <button class="btn btn-outline-danger">Delete Campground</button>
                         </form>
                     </div>
                 </footer>
             </div>
-            <div class="col-12 col-lg-4 pt-3">
-                <div class="col">
+            <div class="col-12 col-lg-4 pt-3" id="vertical-line">
+                <div class="col horizontal-line">
                     <h2>Leave a Review</h2>
                 </div>
                 <form class="col needs-validation" action="/campgrounds/<%= campground._id %>/reviews" method="POST"
@@ -57,8 +58,7 @@
                         <button class="btn btn-outline-success" type="submit">Submit</button>
                     </div>
                 </form>
-                <hr>
-                <div class="col">
+                <div class="col horizontal-line">
                     <h2>User Reviews</h2>
                 </div>
                 <div class="col">
