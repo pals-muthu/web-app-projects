@@ -4,4 +4,5 @@ Projects to look for:
 
 Test Projects
 - productsApp
-- 
+- testApp1
+- testAppDR
