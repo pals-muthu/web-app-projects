@@ -1,9 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const methodOverride = require('method-override');
-const morgan = require('morgan');
-const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 
 // ------------------------------------------------------------------------------------
@@ -20,6 +17,10 @@ db.once('open', () => {
 
 // ------------------------------------------------------------------------------------
 // ALL COMMON MIDDLEWARE FUNCTIONS
+const ejsMate = require('ejs-mate');
+const methodOverride = require('method-override');
+const morgan = require('morgan');
+
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -76,16 +77,32 @@ app.use((req, res, next) => {
 })
 
 // ------------------------------------------------------------------------------------
+// PASSPORT MIDDLEWARE
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// ------------------------------------------------------------------------------------
 // ALL ROUTE MIDDLEWARE FUNCTIONS
 
 app.get('/', (req, res) => {
     res.render('homePage');
 });
 
-const { campgroundRouter, reviewRouter } = require('./routes');
+const { campgroundRouter, reviewRouter, usersRouter } = require('./routes');
 
+app.use('/', usersRouter);
 app.use('/campgrounds', campgroundRouter);
 app.use('/campgrounds/:id/reviews', reviewRouter);
+
 
 // ------------------------------------------------------------------------------------
 // ERROR HANDLING MIDDLEWARE
