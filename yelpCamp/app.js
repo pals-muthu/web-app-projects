@@ -2,11 +2,24 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const ExpressError = require('./utils/ExpressError');
-
+const dotenv = require('dotenv');
+dotenv.config();
 // ------------------------------------------------------------------------------------
 // MONGOOSE SPECIFICS
+
+const db_url = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+console.log("db_url: ", db_url);
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/yelp-camp', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
+// mongoose.connect('mongodb://localhost:27017/yelp-camp', 
+mongoose.connect(db_url,
+    {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false
+    }).catch(err => {
+        console.log(err);
+    });
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -47,11 +60,21 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // ------------------------------------------------------------------------------------
 // EXPRESS SESSION MIDDLEWARE
-
+const secret = process.env.SECRET;
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const store = new MongoStore({
+    url: db_url,
+    secret: secret,
+    touchAfter: 24 * 3600
+})
+store.on("error", function (err) {
+    console.log("Session Store error: ", err);
+})
 
 const sessionConfig = {
-    secret: 'secret-TBD',
+    store: store,
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
