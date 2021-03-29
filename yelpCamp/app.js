@@ -37,7 +37,7 @@ app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 // My Middleware function
 app.use((req, res, next) => {
-    console.log("Request received with query: ", req.query);
+    // console.log("Request received with query: ", req.query);
     next();
     // not advised
     // console.log("After calling the middleware");
@@ -64,19 +64,6 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 // ------------------------------------------------------------------------------------
-// FLASH MIDDLEWARE
-
-const flash = require('connect-flash');
-
-app.use(flash());
-
-app.use((req, res, next) => {
-    res.locals.success = req.flash('success');
-    res.locals.error = req.flash('error');
-    next();
-})
-
-// ------------------------------------------------------------------------------------
 // PASSPORT MIDDLEWARE
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -89,6 +76,20 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// ------------------------------------------------------------------------------------
+// FLASH MIDDLEWARE
+
+const flash = require('connect-flash');
+
+app.use(flash());
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
 
 // ------------------------------------------------------------------------------------
 // ALL ROUTE MIDDLEWARE FUNCTIONS

@@ -15,8 +15,11 @@ router.post('/register', catchAsync(async (req, res, next) => {
     try {
         const registerdUser = await User.register(user, password);
         if (registerdUser) {
-            req.flash('success', `Registered ${user.username}`);
-            res.redirect('/campgrounds');
+            req.login(registerdUser, (err) => {
+                if (err) return next(err);
+                req.flash('success', `Registered ${user.username}`);
+                res.redirect('/campgrounds');
+            })
         }
         else {
             req.flash('error', `Could not register the user`);
@@ -37,7 +40,15 @@ router.get('/login', catchAsync(async (req, res, next) => {
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }),
     catchAsync(async (req, res, next) => {
         req.flash('success', 'welcome back!');
-        res.redirect('/campgrounds');
+        const redirectURL = req.session.lastPage || '/campgrounds';
+        req.session.lastPage = null;
+        res.redirect(redirectURL);
     }));
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success', 'Logged out');
+    res.redirect('/campgrounds');
+})
 
 module.exports = router;
