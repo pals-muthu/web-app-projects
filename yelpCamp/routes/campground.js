@@ -21,7 +21,8 @@ router.post('/', isAuthenticated, validateCampgroundSchema, catchAsync(async (re
         location: req.body.campground.location,
         image: req.body.campground.image,
         description: req.body.campground.description,
-        price: req.body.campground.price
+        price: req.body.campground.price,
+        author: req.user._id
     });
     _campground.save();
     req.flash('success', 'Created a new campgroud!!!');
@@ -33,7 +34,7 @@ router.get('/new', isAuthenticated, (req, res) => {
 });
 
 router.get('/:id', catchAsync(async (req, res, next) => {
-    const _campground = await Campground.findById(req.params.id).populate('reviews');
+    const _campground = await Campground.findById(req.params.id).populate('reviews').populate('author');
     console.log(_campground);
     if (!_campground) {
         req.flash('error', 'Cannot find the campground!');
@@ -50,18 +51,25 @@ router.get('/:id/edit', isAuthenticated, catchAsync(async (req, res, next) => {
 
 router.put('/:id', isAuthenticated, validateCampgroundSchema, catchAsync(async (req, res, next) => {
     // console.log(req.params);
-    const _campground = await Campground.findByIdAndUpdate(req.params.id, req.body.campground, { new: true, runValidators: true });
+    const _campground = await Campground.findOneAndUpdate({ _id: req.params.id, author: req.user._id }, req.body.campground, { new: true, runValidators: true });
     // console.log("updated: ", _campground);
+    if (!_campground) {
+        req.flash('error', 'Unauthorized!');
+        return res.redirect(`/campgrounds/${req.params.id}`);
+    }
     req.flash('success', 'Updated Campground!');
     res.redirect(`/campgrounds/${_campground._id}`);
 }));
 
 router.delete('/:id', isAuthenticated, catchAsync(async (req, res, next) => {
-    const _campground = await Campground.findByIdAndDelete(req.params.id);
-    // console.log("deleted: ", _campground);
+    const _campground = await Campground.findOneAndDelete({ _id: req.params.id, author: req.user._id });
+    if (!_campground) {
+        req.flash('error', 'Unauthorized!');
+        return res.redirect(`/campgrounds/${req.params.id}`);
+    }
+    console.log("deleted: ", _campground);
     req.flash('success', 'Deleted Campground!');
     res.redirect(`/campgrounds`);
 }));
-
 
 module.exports = router;

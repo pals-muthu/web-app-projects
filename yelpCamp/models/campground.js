@@ -23,6 +23,10 @@ const CampgroundSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Review'
@@ -31,7 +35,9 @@ const CampgroundSchema = new mongoose.Schema({
 
 CampgroundSchema.post('findOneAndDelete', async function (data) {
     // console.log("Bulk Delete");
-    await Review.deleteMany({ _id: { $in: data.reviews } })
+    if (data) {
+        await Review.deleteMany({ _id: { $in: data.reviews } })
+    }
 });
 
 CampgroundSchema.methods.DeleteReview = async function (reviewID) {
