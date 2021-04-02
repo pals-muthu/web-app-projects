@@ -1,5 +1,4 @@
 <% layout('layouts/boilerplate') %>
-    <link rel="stylesheet" href="/styles/app.css">
     <link rel="stylesheet" href="/styles/showCampground.css">
     <div class="container mb-3">
         <div class="row">
@@ -32,17 +31,19 @@
                         $<%= campground.price %>/night
                     </p>
                 </div>
-                <footer class="row mb-2">
-                    <div class="col-auto col-md-4 mt-2">
-                        <a class="btn btn-outline-warning" href="<%=`/campgrounds/${campground._id}/edit`%>">Edit
-                            Campground</a>
-                    </div>
-                    <div class="col-auto col-md-4 mt-2">
-                        <form action="<%=`/campgrounds/${campground._id}?_method=DELETE`%>" method="POST">
-                            <button class="btn btn-outline-danger">Delete Campground</button>
-                        </form>
-                    </div>
-                </footer>
+                <% if (currentUser && campground && currentUser.username==campground.author.username) { %>
+                    <footer class="row mb-2">
+                        <div class="col-auto col-md-4 mt-2">
+                            <a class="btn btn-outline-warning" href="<%=`/campgrounds/${campground._id}/edit`%>">Edit
+                                Campground</a>
+                        </div>
+                        <div class="col-auto col-md-4 mt-2">
+                            <form action="<%=`/campgrounds/${campground._id}?_method=DELETE`%>" method="POST">
+                                <button class="btn btn-outline-danger">Delete Campground</button>
+                            </form>
+                        </div>
+                    </footer>
+                    <% } %>
             </div>
             <div class="col-12 col-lg-4 pt-3" id="vertical-line">
                 <div class="col horizontal-line">
