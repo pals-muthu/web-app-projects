@@ -8,31 +8,14 @@ const { validateReviewSchema } = require('./../utils/validationSchemas');
 const isAuthenticated = require('./../utils/isAuthenticated');
 const { isAuthorizedForReview } = require('./../utils/isAuthorized');
 
-const Review = require('./../models/review');
-const Campground = require('./../models/campground');
+const review = require('./../controllers/review')
 
 // ------------------------------------------------------------------------------------
 // ALL REVIEW MODEL
 
-router.post('/', isAuthenticated, validateReviewSchema, catchAsync(async (req, res, next) => {
-    const _campground = await Campground.findById(req.params.id);
-    const review = new Review(req.body.review);
-    review.author = req.user._id;
-    _campground.reviews.push(review);
-    await review.save();
-    await _campground.save();
-    req.flash('success', 'Added Review');
-    res.redirect(`/campgrounds/${req.params.id}`);
+router.post('/', isAuthenticated, validateReviewSchema, catchAsync(review.addReview));
 
-}));
-
-router.delete('/:rid', isAuthenticated, isAuthorizedForReview, catchAsync(async (req, res, next) => {
-    // await Campground.findByIdAndUpdate(req.params.id, {$pull: {reviews: req.params.rid}});
-    const _campground = await Campground.findById(req.params.id);
-    await _campground.DeleteReview(req.params.rid);
-    req.flash('success', 'Deleted Review');
-    res.redirect(`/campgrounds/${req.params.id}`);
-}));
+router.delete('/:rid', isAuthenticated, isAuthorizedForReview, catchAsync(review.deleteReview));
 
 module.exports = router;
 

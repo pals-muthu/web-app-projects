@@ -3,52 +3,17 @@ const router = express.Router({ mergeParams: true });
 const passport = require('passport');
 const catchAsync = require('../utils/catchAsync');
 
-const User = require('../models/user');
+const user = require('./../controllers/user');
 
-router.get('/register', catchAsync(async (req, res, next) => {
-    res.render('./users/register');
-}));
+router.get('/register', catchAsync(user.renderRegisterForm));
 
-router.post('/register', catchAsync(async (req, res, next) => {
-    const { email, username, password } = req.body.user;
-    const user = new User({ email, username });
-    try {
-        const registerdUser = await User.register(user, password);
-        if (registerdUser) {
-            req.login(registerdUser, (err) => {
-                if (err) return next(err);
-                req.flash('success', `Registered ${user.username}`);
-                res.redirect('/campgrounds');
-            })
-        }
-        else {
-            req.flash('error', `Could not register the user`);
-            res.redirect('/register');
-        }
-    } catch (err) {
-        console.log("error: ", err);
-        req.flash('error', err.message);
-        res.redirect('/register');
-    }
+router.post('/register', catchAsync(user.registerUser));
 
-}));
-
-router.get('/login', catchAsync(async (req, res, next) => {
-    res.render('./users/login');
-}));
+router.get('/login', catchAsync(user.renderLoginForm));
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }),
-    catchAsync(async (req, res, next) => {
-        req.flash('success', 'welcome back!');
-        const redirectURL = req.session.lastPage || '/campgrounds';
-        req.session.lastPage = null;
-        res.redirect(redirectURL);
-    }));
+    catchAsync(user.loginUser));
 
-router.get('/logout', (req, res) => {
-    req.logout();
-    req.flash('success', 'Logged out');
-    res.redirect('/campgrounds');
-})
+router.get('/logout', catchAsync(user.logoutUser));
 
 module.exports = router;
