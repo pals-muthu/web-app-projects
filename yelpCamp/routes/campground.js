@@ -10,18 +10,17 @@ const campground = require('./../controllers/campground');
 // ------------------------------------------------------------------------------------
 // ALL CAMPGROUNDS
 
-router.get('/', catchAsync(campground.index));
-
-router.post('/', isAuthenticated, validateCampgroundSchema, catchAsync(campground.createCampground));
+router.route('/')
+    .get(catchAsync(campground.index))
+    .post(isAuthenticated, validateCampgroundSchema, catchAsync(campground.createCampground));
 
 router.get('/new', isAuthenticated, catchAsync(campground.renderNewForm));
 
-router.get('/:id', catchAsync(campground.showCampground));
+router.route('/:id')
+    .get(catchAsync(campground.showCampground))
+    .put(isAuthenticated, isAuthorizedForCampground, validateCampgroundSchema, catchAsync(campground.updateCampground))
+    .delete(isAuthenticated, isAuthorizedForCampground, catchAsync(campground.deleteCampground));
 
 router.get('/:id/edit', isAuthenticated, isAuthorizedForCampground, catchAsync(campground.renderEditForm));
-
-router.put('/:id', isAuthenticated, isAuthorizedForCampground, validateCampgroundSchema, catchAsync(campground.updateCampground));
-
-router.delete('/:id', isAuthenticated, isAuthorizedForCampground, catchAsync(campground.deleteCampground));
 
 module.exports = router;
