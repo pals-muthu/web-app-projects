@@ -22,12 +22,12 @@
                     <a class="nav-link" href="/login">Login</a>
                     <a class="nav-link" href="/register">Register</a>
                     <% } else { %>
-                        <div class="nav-item dropdown bg-dark">
+                        <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1); %>
                             </a>
-                            <ul class="dropdown-menu" id="nav-drop" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-end" id="nav-drop" aria-labelledby="navbarDropdown">
                                 <li><a class="nav-link" href="/logout">Logout</a></li>
                             </ul>
                         </div>
