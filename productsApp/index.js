@@ -23,6 +23,7 @@ mongoose.connect('mongodb://localhost:27017/farmStand', { useNewUrlParser: true,
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, "public")));
 
 const categories = ['fruit', 'vegetable', 'diary'];
 app.get('/products', async (req, res) => {
@@ -85,6 +86,6 @@ app.delete('/products/:id', urlencodedParser, async (req, res) => {
     res.redirect(`/products`);
 })
 
-app.listen("3550", () => {
-    console.log("listening on port 355o");
+app.listen("4000", () => {
+    console.log("listening on port 4000");
 })
