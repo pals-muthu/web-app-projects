@@ -18,7 +18,7 @@
             <a href=<%=`/products?category=${curProduct.category}`%>><%= curProduct.category %></a>
         </li>
     </ul>
-    <a href=<%=`/products/${curProduct._id}`%>>Edit Product</a>
+    <a href=<%=`/products/${curProduct._id}/edit`%>>Edit Product</a>
     <a href="/products">All Products</a>
     <form action=<%=`/products/${curProduct._id}?_method=DELETE`%> method="POST">
         <button>Delete</button>
