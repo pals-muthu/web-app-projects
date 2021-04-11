@@ -20,9 +20,37 @@
                             campground.author.username.slice(1);%>
                     </p>
                 </div>
-                <div class="col-auto col-lg-8">
-                    <img src="<%= campground.image %>" alt="" style="width: 100%;">
+                <div id="carouselExampleIndicators" class="carousel slide col-auto col-lg-8" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <% for (let [index, img] of campground.images.entries()) { %>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to=<%=index
+                                %>
+                                class="<%= index===0 ? 'active' : '' %>"
+                                    aria-current="<%= index===0 ? 'true' : '' %>"
+                                        aria-label=<%= `Slide ${index + 1}` %>></button>
+                            <% } %>
+                    </div>
+                    <div class="carousel-inner">
+                        <% for (let [index, img] of campground.images.entries()) { %>
+                            <div class="carousel-item <%= index===0 ? 'active' : ''  %>">
+                                <img src=<%=img.url %> class="d-block w-100" alt="...">
+                            </div>
+                            <% } %>
+                    </div>
+                    <% if (campground.images.length> 1) { %>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <% } %>
                 </div>
+
                 <div class="col-auto col-lg-8 mt-2">
                     <p>
                         <%= campground.description %>

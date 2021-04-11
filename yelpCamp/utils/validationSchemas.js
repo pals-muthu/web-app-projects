@@ -3,15 +3,15 @@ const ExpressError = require('./ExpressError');
 
 function validateCampgroundSchema(req, res, next) {
     console.log("req body: ", req.body);
-    // if (!req.body.campground) throw new ExpressError("Invalid Data", 400);
     const campgroundSchema = Joi.object({
         campground: Joi.object({
             title: Joi.string().required().min(1),
             price: Joi.number().required().min(0),
             description: Joi.string().required(),
-            image: Joi.string().required(),
+            // images: Joi.string().required(),
             location: Joi.string().required(),
-        }).required()
+        }).required(),
+        deleteImages: Joi.array()
     })
     const result = campgroundSchema.validate(req.body);
     const { error } = result;

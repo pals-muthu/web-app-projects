@@ -24,10 +24,21 @@ const populateData = async () => {
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sampleData(descriptors)} ${sampleData(places)}`,
-            image: 'https://source.unsplash.com/collection/94533254/800X600',
+            // image: 'https://source.unsplash.com/collection/94533254/800X600',
             description: 'Camping is one of the most popular recreational activities on Vancouver Island in British Columbia, and campgrounds in BC are as varied as the wonderful terrain in which they are located. Campers can pitch tents in private campsites, in BC Recreation Campsites located on Crown land outside of parks, and alongside lakes or rivers, but the real camping highlight is a space in one of Vancouver Island’s magnificent provincial or national park campgrounds! ',
             author: '6066d67d6097430d30d445c6',
-            price: Math.floor(Math.random() * 20) + 10
+            price: Math.floor(Math.random() * 20) + 10,
+            images: [
+                {
+                    url: 'https://res.cloudinary.com/dhvmx2r1v/image/upload/v1618059146/YelpCamp/rpmouwnrorvksrby2a5h.jpg',
+                    filename: 'YelpCamp/rpmouwnrorvksrby2a5h'
+                },
+                {
+                    url: 'https://res.cloudinary.com/dhvmx2r1v/image/upload/v1618059080/YelpCamp/xfngk2maxt6iy7kw3th0.jpg',
+                    filename: 'YelpCamp/xfngk2maxt6iy7kw3th0'
+                }
+            ]
+
         })
         await camp.save();
         console.log(camp);

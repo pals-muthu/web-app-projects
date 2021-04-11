@@ -4,7 +4,7 @@
             <h1 class="text-center">Edit Campground</h1>
             <div class="col-lg-6 offset-lg-3">
                 <form action="<%=`/campgrounds/${campground._id}?_method=PUT`%>" method="POST" class="needs-validation"
-                    novalidate>
+                    novalidate enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" name="campground[title]" id="title"
@@ -16,9 +16,21 @@
                             value="<%=campground.location%>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="image" class="form-label">Image URL</label>
-                        <input type="text" class="form-control" name="campground[image]" id="image"
-                            value="<%=campground.image%>" required>
+                        <label for="image" class="form-label">Add Images</label>
+                        <input type="file" class="form-control" name="campground[images]" id="image" multiple>
+                    </div>
+                    <div class="mb-3">
+                        <p class="form-label">Delete Images</p>
+                        <% campground.images.forEach(function(img, i) { %>
+                            <div class="d-inline-block">
+                                <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+                                <div class="form-check-inline">
+                                    <input type="checkbox" id="image-<%=i%>" name="deleteImages[]"
+                                        value="<%=img.filename%>">
+                                </div>
+                                <label for="image-<%=i%>">Delete ?</label>
+                            </div>
+                            <% }) %>
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Price</label>
@@ -36,8 +48,8 @@
                     <div class="mb-3">
                         <button class="btn btn-outline-info">Edit Campground</button>
                     </div>
-                    <footer>
-                        <a href="<%=`/campgrounds/${campground._id}`%>">Cancel</a>
+                    <footer class="mb-3">
+                        <a href="<%=`/campgrounds/${campground._id}`%>" class="btn btn-outline-secondary">Cancel</a>
                     </footer>
                 </form>
             </div>
