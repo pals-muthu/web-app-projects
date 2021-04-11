@@ -6,7 +6,7 @@ module.exports.index = async (req, res, next) => {
     res.render('./campgrounds/allCampgrounds', { campgrounds });
 }
 
-module.exports.renderNewForm = (req, res) => {
+module.exports.renderNewForm = async (req, res, next) => {
     res.render('./campgrounds/newCampground');
 }
 
@@ -33,10 +33,10 @@ module.exports.showCampground = async (req, res, next) => {
             path: 'author'
         }
     });
-    console.log(_campground);
+    // console.log(_campground);
     if (!_campground) {
         req.flash('error', 'Cannot find the campground!');
-        res.redirect('/campgrounds');
+        return res.redirect('/campgrounds');
     }
     res.render('./campgrounds/showCampground', { campground: _campground });
 }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Campground = require('../models/campground');
+const Review = require('./../models/review');
 const { descriptors, places } = require('./seedHelpers');
 const cities = require('./cities');
 
@@ -14,6 +15,7 @@ db.once('open', () => {
 
 const clearDb = async () => {
     await Campground.deleteMany({});
+    await Review.deleteMany({});
 }
 
 const sampleData = array => array[Math.floor(Math.random() * array.length)]
