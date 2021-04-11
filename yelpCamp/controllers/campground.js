@@ -6,7 +6,7 @@ module.exports.index = async (req, res, next) => {
     res.render('./campgrounds/allCampgrounds', { campgrounds });
 }
 
-module.exports.renderNewForm = async (req, res, next) => {
+module.exports.renderNewForm = (req, res, next) => {
     res.render('./campgrounds/newCampground');
 }
 

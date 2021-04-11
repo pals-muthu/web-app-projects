@@ -20,7 +20,7 @@ router.route('/')
     .post(isAuthenticated, upload.array('campground[images]', 8), validateCampgroundSchema, catchAsync(campground.createCampground));
 
 router.route('/new')
-    .get(isAuthenticated, catchAsync(campground.renderNewForm));
+    .get(isAuthenticated, campground.renderNewForm);
 
 router.route('/:id')
     .get(catchAsync(campground.showCampground))
