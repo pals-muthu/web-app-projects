@@ -4,6 +4,10 @@ const Review = require('./../models/review');
 const { descriptors, places } = require('./seedHelpers');
 const cities = require('./cities');
 
+const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const mapBoxToken = "pk.eyJ1IjoicGFscy1tdXRodSIsImEiOiJja25jdHl1c24xYmdpMnBtdXEzYTg2Znl2In0.Io7G1FTEIKbBpVRfxtQZ9g";
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
+
 mongoose.connect('mongodb://localhost:27017/yelp-camp', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
@@ -23,8 +27,14 @@ const sampleData = array => array[Math.floor(Math.random() * array.length)]
 const populateData = async () => {
     for (let i = 0; i < 100; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const location = `${cities[random1000].city}, ${cities[random1000].state}`
+        const geometry = await geocoder.forwardGeocode({
+            query: location,
+            limit: 1
+        }).send()
         const camp = new Campground({
-            location: `${cities[random1000].city}, ${cities[random1000].state}`,
+            location,
+            geometry: geometry.body.features[0].geometry,
             title: `${sampleData(descriptors)} ${sampleData(places)}`,
             // image: 'https://source.unsplash.com/collection/94533254/800X600',
             description: 'Camping is one of the most popular recreational activities on Vancouver Island in British Columbia, and campgrounds in BC are as varied as the wonderful terrain in which they are located. Campers can pitch tents in private campsites, in BC Recreation Campsites located on Crown land outside of parks, and alongside lakes or rivers, but the real camping highlight is a space in one of Vancouver Island’s magnificent provincial or national park campgrounds! ',
