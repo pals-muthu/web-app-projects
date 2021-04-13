@@ -30,7 +30,7 @@ body {
 
 }
 
-.btn-secondary, .btn-secondary:hover{
+.btn-outline-dark, .btn-outline-dark:hover{
     color: #333;
     text-shadow: none;
 }
