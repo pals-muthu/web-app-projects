@@ -17,8 +17,14 @@
 </head>
 
 <body class="d-flex flex-column vh-100">
+    <script>
+        // global variables used by various pages
+        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const currentUser = '<%-JSON.stringify(currentUser)%>';
+    </script>
+
     <%- include('../partials/navbar') %>
-        <main>
+        <main style="width: 80%; margin: 0 auto;">
             <%- include('../partials/flash') %>
                 <%- body %>
         </main>

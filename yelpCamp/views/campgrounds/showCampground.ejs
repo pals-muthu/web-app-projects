@@ -2,9 +2,7 @@
     <link rel="stylesheet" href="/styles/showCampground.css">
     <link rel="stylesheet" href="/styles/starability.css">
     <script>
-        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
         const campground = JSON.parse('{ "title": <%-JSON.stringify(campground.title)%>, "location": <%-JSON.stringify(campground.location)%>, "geometry": <%-JSON.stringify(campground.geometry)%>}');
-        const currentUser = '<%-JSON.stringify(currentUser)%>';
     </script>
     <div class="container mb-3">
         <!-- For the Main content -->

@@ -54,7 +54,7 @@ const CampgroundSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Review'
     }]
-});
+}, { toJSON: { virtuals: true } });
 
 CampgroundSchema.post('findOneAndDelete', async function (data) {
     // console.log("Bulk Delete");
@@ -71,5 +71,18 @@ CampgroundSchema.methods.DeleteReview = async function (reviewID) {
     await Review.findByIdAndDelete(reviewID);
     await this.save();
 }
+
+CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
+    return {
+        _id: this._id,
+        title: this.title,
+        location: this.location
+    };
+    // return `I am a popup`;
+})
+
+CampgroundSchema.virtual('properties.id').get(function () {
+    return this._id;
+})
 
 module.exports = mongoose.model('Campground', CampgroundSchema);
