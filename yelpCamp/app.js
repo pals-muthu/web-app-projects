@@ -36,6 +36,8 @@ db.once('open', () => {
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require("helmet");
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
@@ -45,15 +47,23 @@ app.set('views', path.join(__dirname, 'views'));
 // although app.use can be used to handle req, res.
 // All the app.use/get/put/post are middleware functions that are chained together in the order they are defined.
 // so once the first middleware function call is done, the next middleware function in the sequence needs to be called for which the next() is used.
-// first middleware
+// Zeroth middleware
 app.use(express.urlencoded({ extended: true }));
+// first middleware
+app.use(
+    helmet({
+        contentSecurityPolicy: false,
+    })
+);
+app.use(mongoSanitize());
 // second middleware
 app.use(methodOverride('_method'));
 // third middleware
 app.use(morgan('tiny'));
 // My Middleware function
 app.use((req, res, next) => {
-    // console.log("Request received with query: ", req.query);
+    console.log("Request received with body: ", req.body);
+    console.log("Request received with query: ", req.query);
     next();
     // not advised
     // console.log("After calling the middleware");
@@ -82,6 +92,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // secure: true,
         expires: Date.now() + (1000 * 60 * 60 * 24 * 7), // For IE type browsers
         maxAge: (1000 * 60 * 60 * 24 * 7)
     }

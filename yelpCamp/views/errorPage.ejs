@@ -8,6 +8,8 @@
         </p>
         <hr>
         <p class="mb-0">
-            <%= stack %>
+            <% if (process.env.NODE_ENV !=="production" ) { %>
+                <%= stack %>
+                    <% } %>
         </p>
     </div>
