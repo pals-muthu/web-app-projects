@@ -16,7 +16,6 @@ const upload = multer({ storage: storage, fileFilter: filterFile, limits: { file
 
 router.route('/')
     .get(catchAsync(campground.index))
-    // .post(isAuthenticated, validateCampgroundSchema, catchAsync(campground.createCampground));
     .post(isAuthenticated, upload.array('campground[images]', 8), validateCampgroundSchema, catchAsync(campground.createCampground));
 
 router.route('/new')

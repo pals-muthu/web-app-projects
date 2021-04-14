@@ -27,9 +27,31 @@
                 </div>
             </div>
         </div>
+
         <% }%>
-            <script>
-                const campgrounds = JSON.parse('<%-JSON.stringify(campgrounds)%>');
-                console.log('campgrounds', campgrounds);
-            </script>
+            <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+                </script>
             <script src="/javascripts/clusterMap.js"></script>
+            <script>
+                var campgrounds = null;
+                const fetchCampgrounds = async function () {
+                    campgrounds = await $.ajax({
+                        url: '/campgrounds?datatype=JSON',
+                        type: 'GET',
+                        // success: function (result) {
+                        //     console.log("obtained result: ", result);
+                        // },
+                        // error: function (xhr, status, error) {
+                        //     console.log("obtained error: ", error);
+                        // }
+                    })
+                }
+
+                fetchCampgrounds().then(() => {
+                    loadMap();
+                }).catch(() => {
+                    console.log("Could not load map");
+                });
+
+            </script>

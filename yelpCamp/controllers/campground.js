@@ -8,7 +8,12 @@ const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (req, res, next) => {
     const campgrounds = await Campground.find({});
-    res.render('./campgrounds/allCampgrounds', { campgrounds });
+    console.log("req query", req.query);
+    if (req.query.datatype === 'JSON') {
+        res.send(campgrounds);
+    } else {
+        res.render('./campgrounds/allCampgrounds', { campgrounds });
+    }
 }
 
 module.exports.renderNewForm = (req, res, next) => {
