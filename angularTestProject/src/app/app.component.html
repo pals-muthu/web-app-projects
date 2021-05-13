@@ -1,8 +1,20 @@
 <h1>Welcome to the angular test project {{ title }} </h1>
 
+<hr>
+
 <app-success-alert></app-success-alert>
+
+<hr>
 
 <app-warning-alert></app-warning-alert>
 
+<hr>
+
+<!-- <input type="text" [(ngModel)]="username" (input)="checkUsernameIsEmpty()">
+<p> {{ username }}</p>
+<button class="btn btn-primary" [disabled]="username === ''" (click)="clearUsername()">Click Me!!!</button> -->
+<input type="text" [(ngModel)]="username">
+<p> {{ username }}</p>
+<button class="btn btn-primary" [disabled]="username === ''" (click)="username = ''">Click Me!!!</button>
 
 <p> The end</p>

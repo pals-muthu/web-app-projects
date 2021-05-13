@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angularTestProject';
+  username = '';
+  isUsernameEmpty = true;
+
+  clearUsername() {
+    this.username = '';
+    this.isUsernameEmpty = true;
+  }
+
+  checkUsernameIsEmpty() {
+    this.isUsernameEmpty = false;
+    if (this.username == '') {
+      this.isUsernameEmpty = true;
+    }
+    console.log(this.isUsernameEmpty);
+
+  }
 }
