@@ -1,0 +1,12 @@
+<div class="alert alert-success" role="alert">{{ 'Success' }} with msg: {{ successMsg }} of {{ getSuccessIndex() }}
+    times
+</div>
+<button class='btn btn-secondary' (click)="updateSuccessMsg1($event)">Click Me!!!</button>
+<p>{{ successDisplayMsg }}</p>
+<div>
+    <input type="text" [(ngModel)]="successDisplayMsg">
+</div>
+<div>
+    <input type="text" [(ngModel)]="successDisplayMsg">
+</div>
+<hr>
