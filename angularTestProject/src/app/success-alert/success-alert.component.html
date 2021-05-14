@@ -1,9 +1,14 @@
-<div class="alert alert-success" role="alert">{{ 'Success' }} with msg: {{ successMsg }} of {{ getSuccessIndex() }}
+<div class="alert alert-success" role="alert" *ngIf="successIndex > 0; else noSuccessAlert">{{ 'Success' }} with msg: {{
+    successMsg }} of {{
+    getSuccessIndex() }}
     times
 </div>
+<ng-template #noSuccessAlert>
+    <div class="alert alert-info" role="alert">success not clicked</div>
+</ng-template>
 <button class='btn btn-secondary' (click)="updateSuccessMsg1($event)">Click Me!!!</button>
 <p>{{ successDisplayMsg }}</p>
-<div>
+<div [ngClass]="{enhance: successIndex > 0}">
     <input type="text" [(ngModel)]="successDisplayMsg">
 </div>
 <div>

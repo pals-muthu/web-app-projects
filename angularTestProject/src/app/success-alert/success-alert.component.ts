@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SuccessAlertComponent implements OnInit {
 
     successMsg = 'Success! logged in';
-    successIndex: number = 1;
+    successIndex: number = 0;
     successDisplayMsg: string = 'Success not triggered';
 
     getSuccessIndex() {

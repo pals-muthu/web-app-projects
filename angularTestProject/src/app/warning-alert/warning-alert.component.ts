@@ -7,14 +7,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WarningAlertComponent implements OnInit {
 
-  allowNewWarnings = true;
+  // warningColor = 'none';
+  // font = 'normal';
+  warningColor = 'lightpink'
+  font = 'italic'
+
+  allowNewWarnings = false;
   constructor() {
     setTimeout(() => {
-      this.allowNewWarnings = false;
+      this.allowNewWarnings = true;
     }, 2000);
   }
 
   ngOnInit(): void {
+  }
+
+  enableWarning() {
+
+    this.warningColor = '#FFFBD6';
+    this.font = 'normal';
+    // this.warningColor = 'lightpink'
+    // this.font = 'italic'
+  }
+
+  getColor() {
+    return this.warningColor;
+  }
+
+  getFont() {
+    return this.font
   }
 
 }

@@ -5,3 +5,8 @@ div {
 input {
     width: 200px;
 }
+
+.enhance {
+    border: 5px solid lightsalmon;
+    padding: 15px;
+}
