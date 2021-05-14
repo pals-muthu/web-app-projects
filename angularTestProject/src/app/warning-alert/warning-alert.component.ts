@@ -12,6 +12,7 @@ export class WarningAlertComponent implements OnInit {
   warningColor = 'lightpink'
   font = 'italic'
 
+  warningIndex = [];
   allowNewWarnings = false;
   constructor() {
     setTimeout(() => {
@@ -28,6 +29,7 @@ export class WarningAlertComponent implements OnInit {
     this.font = 'normal';
     // this.warningColor = 'lightpink'
     // this.font = 'italic'
+    this.warningIndex.push('1');
   }
 
   getColor() {
@@ -37,5 +39,7 @@ export class WarningAlertComponent implements OnInit {
   getFont() {
     return this.font
   }
+
+  addWarning
 
 }

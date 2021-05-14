@@ -13,8 +13,9 @@
 <!-- <input type="text" [(ngModel)]="username" (input)="checkUsernameIsEmpty()">
 <p> {{ username }}</p>
 <button class="btn btn-primary" [disabled]="username === ''" (click)="clearUsername()">Click Me!!!</button> -->
-<input type="text" [(ngModel)]="username">
+<label for="usr">Username</label>
+<input type="text" [(ngModel)]="username" id="usr">
 <p> {{ username }}</p>
-<button class="btn btn-primary" [disabled]="username === ''" (click)="username = ''">Click Me!!!</button>
+<button class="btn btn-primary" [disabled]="username === ''" (click)="username = ''">Reset User</button>
 
 <p> The end</p>
