@@ -1,6 +1,6 @@
 # node_projects
 Deployed Projects:
-- yelpCamp - 
+- yelpCamp 
   - https://limitless-depths-89574.herokuapp.com/ (heroku) - online
   - https://abstract-robot-311211.ue.r.appspot.com (gcp) - currently offline
 
@@ -9,3 +9,4 @@ Test Projects
 - testApp1
 - testAppDR
 - angularTestProject
+- foodBlog
