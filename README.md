@@ -9,4 +9,5 @@ Test Projects
 - testApp1
 - testAppDR
 - angularTestProject
+- bindingAssingnment
 - foodBlog
