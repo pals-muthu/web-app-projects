@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-xs-12">
+      <app-game-control (emitCounter)="addOddOrEven($event)"></app-game-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-xs-12">
+      <div class="col col-xs-12" *ngFor="let gameValue of gameValues">
+        <div class="thumbnail">
+          <div class="caption" *ngIf="gameValue % 2 == 1;else evenMarker">
+            <app-odd>
+              <h3 class="odd">Odd - {{gameValue}}</h3>
+            </app-odd>
+          </div>
+          <ng-template class="caption" #evenMarker>
+            <app-even>
+              <h3 class="even">Even - {{gameValue}}</h3>
+            </app-even>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
