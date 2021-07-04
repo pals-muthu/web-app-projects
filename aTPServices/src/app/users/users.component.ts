@@ -8,13 +8,14 @@ import { UsersService } from '../users.service';
 })
 export class UsersComponent implements OnInit {
   @Input() user: {name: string, status: string};
+  @Input() index: number;
   constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
   }
 
   updateUserStatus() {
-    this.userService.toggleStatus(this.user);
+    this.userService.toggleStatus(this.index);
   }
 
 }

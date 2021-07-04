@@ -11,18 +11,14 @@ export class UsersService {
 
   constructor(private counterService: CounterService) {}
 
-  toggleStatus (user: {name: string, status: string}) {
-    for (let eachUser of this.registeredUsers) {
-      if (eachUser.name === user.name) {
-        if (eachUser.status === 'active') {
-          eachUser.status = 'inactive';
-          this.counterService.updateMovedToInactiveCounter();
-        } else {
-          eachUser.status = 'active';
-          this.counterService.updateMovedToActiveCounter();
-        }
-      }
+  toggleStatus (useriD: number) {
+    let currentUser = this.registeredUsers[useriD]
+    if (currentUser.status === 'active') {
+      currentUser.status = 'inactive';
+      this.counterService.updateMovedToInactiveCounter();
+    } else {
+      currentUser.status = 'active';
+      this.counterService.updateMovedToActiveCounter();
     }
   }
-
 }
