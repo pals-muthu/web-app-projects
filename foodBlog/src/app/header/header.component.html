@@ -16,9 +16,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li [ngClass]="{active: showRecipesPage}"><a href="#" (click)="trigger('recipe')">Recipes <span
+        <!-- <li [ngClass]="{active: showRecipesPage}"><a href="#" (click)="trigger('recipe')">Recipes <span
               class="sr-only">(current)</span></a></li>
-        <li [ngClass]="{active: !showRecipesPage}"><a href="#" (click)="trigger('shopping_list')">Shopping List</a></li>
+        <li [ngClass]="{active: !showRecipesPage}"><a href="#" (click)="trigger('shopping_list')">Shopping List</a></li> -->
+        <li routerLinkActive="active"><a routerLink="/recipes">Recipes <span class="sr-only">(current)</span></a></li>
+        <li routerLinkActive="active"><a routerLink="/shop">Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="#">Link</a></li> -->

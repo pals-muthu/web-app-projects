@@ -1,12 +1,14 @@
-<app-header (showRecipe)="enableRecipe()" (showShoppingList)="enableShoppingList()" [showRecipesPage]="showRecipesPage">
-</app-header>
+<!-- <app-header (showRecipe)="enableRecipe()" (showShoppingList)="enableShoppingList()" [showRecipesPage]="showRecipesPage">
+</app-header> -->
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <div class="col col-xs-12">
-      <app-recipes *ngIf="showRecipesPage;else shoppingList"></app-recipes>
+      <!-- <app-recipes *ngIf="showRecipesPage;else shoppingList"></app-recipes>
       <ng-template #shoppingList>
         <app-shopping-list></app-shopping-list>
-      </ng-template>
+      </ng-template> -->
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
