@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 import { Recipe } from '../recipe.model';
 import {RecipeService} from '../recipe.service';
@@ -15,16 +15,22 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
   constructor(private shopinglistService: ShoppingListService, private recipeService: RecipeService, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
-    console.log('In recipe detail', this.id);
-    this.recipeDetail = this.recipeService.getRecipeById(this.id);
+    // this.id = this.route.snapshot.params['id'];
+    // console.log('In recipe detail', this.id);
+    // this.recipeDetail = this.recipeService.getRecipeById(this.id);
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.recipeDetail = this.recipeService.getRecipeById(this.id);
+      });
   }
 
-  ngAfterViewChecked(): void {
-    this.id = this.route.snapshot.params['id'];
-    console.log('In recipe detail - after checked', this.id);
-    this.recipeDetail = this.recipeService.getRecipeById(this.id);
-  }
+  // ngAfterViewChecked(): void {
+  //   this.id = this.route.snapshot.params['id'];
+  //   console.log('In recipe detail - after checked', this.id);
+  //   this.recipeDetail = this.recipeService.getRecipeById(this.id);
+  // }
 
   toShoppingList() {
     this.shopinglistService.addNewIngredients(this.recipeDetail.ingredients);
