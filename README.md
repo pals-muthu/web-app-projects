@@ -10,4 +10,4 @@ Test Projects
 - testAppDR
 - angularTestProject
 - bindingAssingnment
-- foodBlog
+- foodBlog - In Progress
