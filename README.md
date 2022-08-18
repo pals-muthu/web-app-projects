@@ -1,4 +1,4 @@
-# webAppProjects
+# Web_App_Projects
 Deployed Projects:
 - yelpCamp 
   - https://limitless-depths-89574.herokuapp.com/ (heroku) - online
