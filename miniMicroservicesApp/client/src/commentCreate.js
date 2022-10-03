@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const PostCreate = () => {
-    let [title, setTitle] = useState('');
+const CommentCreate = ({ postId }) => {
+    let [content, setContent] = useState('');
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        await axios.post('http://localhost:4300/posts', {title}).catch((e) => {
+        await axios.post(`http://localhost:4400/posts/${postId}/comments`, {content}).catch((e) => {
             console.log("request failed: ", e);    
         });
 
-        setTitle('');
+        setContent('');
         console.log("success");
     };
 
@@ -19,9 +19,9 @@ const PostCreate = () => {
     <div>
         <form onSubmit={onSubmit}>
             <div className='form-group'>
-                <label>Title</label>
-                <input value={title}
-                onChange={e => setTitle(e.target.value)}
+                <label>New Comment</label>
+                <input value={content}
+                onChange={e => setContent(e.target.value)}
                 className='form-control'/>
             </div>
             <button style={{ marginTop: 10 }} className='btn btn-primary'>Submit</button>
@@ -30,4 +30,4 @@ const PostCreate = () => {
     );
 }
 
-export default PostCreate;
+export default CommentCreate;
