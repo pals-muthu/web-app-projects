@@ -12,7 +12,7 @@ const ExpenseForm = (props) => {
     }
 
     const amountChangeHandler = (event) => {
-        setEnteredAmount(event.target.value);
+        setEnteredAmount(parseFloat(event.target.value));
     }
 
     const dateChangeHandler = (event) => {
