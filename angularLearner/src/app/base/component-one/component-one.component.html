@@ -4,6 +4,7 @@
       <p [class]="i % 2 === 0 ? 'even': 'odd'" ><b>{{innerItem.key}}</b> - {{innerItem.value}}</p>
       <button mat-stroked-button color="primary" (click)="handleClickEvent($event)">Click Me</button>
     </div>
+    <input type="number" [(ngModel)]="counterName" (change)="handleChangeEvent($event)" />
     <br>
   </div>
 </div>

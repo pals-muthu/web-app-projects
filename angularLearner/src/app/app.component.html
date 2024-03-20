@@ -1,6 +1,7 @@
 <div>
   <nav>Nav Bar</nav>
-  <app-component-one />
+  <h1>Global Counter: {{ counterValue }}</h1>
+  <app-component-one [elementData]="ELEMENT_DATA" (counterUpdated)="updateGlobalCounter($event)"/>
   <router-outlet />
 </div>
 
