@@ -1,4 +1,8 @@
 <div>
+  <div>
+    <p #refOne> One's content</p>
+  </div>
+  <ng-content></ng-content>
   <div *ngFor="let item of incomingObject.arr">
     <div *ngFor="let innerItem of item | keyvalue; let i = index;">
       <p [class]="i % 2 === 0 ? 'even': 'odd'" ><b>{{innerItem.key}}</b> - {{innerItem.value}}</p>
