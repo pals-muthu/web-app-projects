@@ -1,1 +1,8 @@
-<p>component-one works!</p>
+<div>
+  <div *ngFor="let item of incomingObject.arr">
+    <div *ngFor="let innerItem of item | keyvalue">
+      <p><b>{{innerItem.key}}</b> - {{innerItem.value}}</p>
+    </div>
+    <br>
+  </div>
+</div>
