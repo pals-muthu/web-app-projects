@@ -1,7 +1,8 @@
 <div>
   <div *ngFor="let item of incomingObject.arr">
-    <div *ngFor="let innerItem of item | keyvalue">
-      <p><b>{{innerItem.key}}</b> - {{innerItem.value}}</p>
+    <div *ngFor="let innerItem of item | keyvalue; let i = index;">
+      <p [class]="i % 2 === 0 ? 'even': 'odd'" ><b>{{innerItem.key}}</b> - {{innerItem.value}}</p>
+      <button mat-stroked-button color="primary" (click)="handleClickEvent($event)">Click Me</button>
     </div>
     <br>
   </div>

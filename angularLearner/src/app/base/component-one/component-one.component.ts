@@ -39,4 +39,8 @@ export class ComponentOneComponent {
 
   };
 
+  handleClickEvent (event: Event) {
+    console.log('event target: ', event.target);
+  }
+
 }
