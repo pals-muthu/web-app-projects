@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ComponentOneComponent } from './base/component-one/component-one.component';
 import { PeriodicElement } from './utils/types';
+import { LoggingService } from './services/logging.service';
 
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -25,13 +26,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angularLearner';
   ELEMENT_DATA = ELEMENT_DATA;
   counterValue: Number = 0;
+  subscribeCounterValue: Number = 0;
+
+  loggingService: LoggingService;
+
+  constructor (loggingService: LoggingService) {
+    this.loggingService = loggingService
+  }
+
+  ngOnInit(): void {
+    this.loggingService.globalCounterEmitter.subscribe((value) => {
+      this.subscribeCounterValue = value;
+    })
+  }
 
   updateGlobalCounter(event: Number) {
-    console.log('global event: ', event);
     this.counterValue = event;
   }
 

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterContentInit, AfterViewInit, Component, ContentChild, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LearnerObject, PeriodicElement } from '../../utils/types';
+import { LoggingService } from '../../services/logging.service';
 
 @Component({
   selector: 'app-component-one',
@@ -14,13 +15,21 @@ export class ComponentOneComponent implements OnChanges, AfterViewInit, AfterCon
 
   @Input('elementData') ELEMENT_DATA: PeriodicElement[] = [];
   @Output() counterUpdated = new EventEmitter<Number>();
-  
+
   @ViewChild('refOne') refOne: any;
   @ContentChild('refBase') refBase: any;
 
   incomingObject: LearnerObject = {
     arr: [],
   };
+
+  counterValue: Number = 0;
+
+  loggingService: LoggingService;
+
+  constructor (loggingService: LoggingService) {
+    this.loggingService = loggingService
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
@@ -42,16 +51,22 @@ export class ComponentOneComponent implements OnChanges, AfterViewInit, AfterCon
     console.log('loader values ngAfterContentInit: ', this.refOne, this.refBase)
   }
 
-  counterName: number = 0;
+  setCounter (value: Number) {
+    this.counterValue = value;
+    this.loggingService.globalCounter = value;
+    this.loggingService.globalCounterEmitter.emit(value);
+    this.counterUpdated.emit(value);
+  }
 
   handleClickEvent (event: Event) {
-    console.log('event target: ', event.target);
+    this.loggingService.logInfo(`click event: ${(event.target as HTMLButtonElement)?.textContent}`);
+    this.setCounter(0);
   }
 
   handleChangeEvent (event: Event) {
     const value = Number.parseInt((event.target as HTMLInputElement).value);
-    console.log('event target: ', value);
-    this.counterUpdated.emit(value);
+    this.loggingService.logInfo(`counter value: ${value}`);
+    this.setCounter(value);
   }
 
 }
