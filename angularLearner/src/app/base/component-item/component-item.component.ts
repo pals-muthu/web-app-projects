@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { ELEMENT_DATA } from '../../utils/data';
 import { Subscription } from 'rxjs';
+import { PeriodicElement } from '../../utils/types';
 
 @Component({
   selector: 'app-component-item',
@@ -15,6 +16,7 @@ export class ComponentItemComponent implements OnInit, OnDestroy {
   name: String;
   weight: Number;
   symbol: String;
+  ELEMENT_DATA: PeriodicElement[] = [];
 
   paramsSubscription: Subscription = new Subscription();
 
@@ -26,7 +28,11 @@ export class ComponentItemComponent implements OnInit, OnDestroy {
   }
 
   loadUserDetail (id: string) {
-    const currentItem = ELEMENT_DATA.find((item) => item.position.toString() === id);
+    this.route.data.subscribe(({ baseData }) => {
+      console.log('on init data: ', baseData)
+      this.ELEMENT_DATA = baseData;
+    });
+    const currentItem = this.ELEMENT_DATA.find((item) => item.position.toString() === id);
     console.log('currentItem: ', currentItem);
     this.position = currentItem?.position || 0;
     this.name = currentItem?.name || '';
@@ -46,13 +52,13 @@ export class ComponentItemComponent implements OnInit, OnDestroy {
 
   getPreviousPositions () : string  {
     if (this.position === 1) {
-      return (ELEMENT_DATA.length - 1).toString();
+      return (this.ELEMENT_DATA.length - 1).toString();
     }
     return (Number(this.position) - 1).toString();
   }
 
   getNextPostition () : string {
-    if (this.position === (ELEMENT_DATA.length - 1)) {
+    if (this.position === (this.ELEMENT_DATA.length - 1)) {
       return '1';
     }
     return (Number(this.position) + 1).toString();
