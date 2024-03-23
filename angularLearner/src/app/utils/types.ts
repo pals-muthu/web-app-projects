@@ -1,8 +1,8 @@
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  name: String;
+  position: Number;
+  weight: Number;
+  symbol: String;
 }
 
 export interface LearnerObject {

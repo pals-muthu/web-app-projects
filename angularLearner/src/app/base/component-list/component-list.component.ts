@@ -5,18 +5,18 @@ import { LearnerObject, PeriodicElement } from '../../utils/types';
 import { LoggingService } from '../../services/logging.service';
 
 @Component({
-  selector: 'app-component-one',
+  selector: 'app-component-list',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './component-one.component.html',
-  styleUrl: './component-one.component.css'
+  templateUrl: './component-list.component.html',
+  styleUrl: './component-list.component.css'
 })
-export class ComponentOneComponent implements OnChanges, AfterViewInit, AfterContentInit {
+export class ComponentListComponent implements OnChanges, AfterViewInit, AfterContentInit {
 
   @Input('elementData') ELEMENT_DATA: PeriodicElement[] = [];
   @Output() counterUpdated = new EventEmitter<Number>();
 
-  @ViewChild('refOne') refOne: any;
+  @ViewChild('refList') refList: any;
   @ContentChild('refBase') refBase: any;
 
   incomingObject: LearnerObject = {
@@ -42,13 +42,13 @@ export class ComponentOneComponent implements OnChanges, AfterViewInit, AfterCon
   ngAfterViewInit(): void {
     //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
     //Add 'implements AfterViewInit' to the class.
-    console.log('loader values ngAfterViewInit: ', this.refOne, this.refBase)
+    console.log('loader values ngAfterViewInit: ', this.refList, this.refBase)
   }
 
   ngAfterContentInit(): void {
     //Called after ngOnInit when the component's or directive's content has been initialized.
     //Add 'implements AfterContentInit' to the class.
-    console.log('loader values ngAfterContentInit: ', this.refOne, this.refBase)
+    console.log('loader values ngAfterContentInit: ', this.refList, this.refBase)
   }
 
   setCounter (value: Number) {

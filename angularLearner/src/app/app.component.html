@@ -1,11 +1,5 @@
 <div>
   <nav>Nav Bar</nav>
-  <h1>Global Counter: {{ counterValue }}</h1>
-  <h1>Service Global Counter: {{ loggingService.globalCounter }}</h1>
-  <h1>Service Subscribed Global Counter: {{ subscribeCounterValue }}</h1>
-  <app-component-one [elementData]="ELEMENT_DATA" (counterUpdated)="updateGlobalCounter($event)">
-    <p #refBase>Inner HTML</p>
-  </app-component-one>
   <router-outlet />
 </div>
 

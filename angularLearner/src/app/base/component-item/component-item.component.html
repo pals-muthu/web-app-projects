@@ -1,0 +1,13 @@
+<div>
+<div>
+  <P>Position: {{position}}</P>
+  <P>Name: {{name}}</P>
+  <P>Weight: {{weight}}</P>
+  <P>Symbol: {{symbol}}</P>
+</div>
+<div>
+  <span><a [routerLink]="['/item', getPreviousPositions()]" routerLinkActive="router-link-active">Previous  </a></span>
+  <span><a [routerLink]="['']" routerLinkActive="router-link-active">  Home  </a></span>
+  <span><button mat-button (click)="goNext()">  Next  </button></span>
+</div>
+</div>
