@@ -9,6 +9,4 @@ export const SampleGuard: CanActivateFn = (
   ) => {
     console.log(' sample guard for main function');
     return true;
-
-    // use inject to inject values here.
 }
