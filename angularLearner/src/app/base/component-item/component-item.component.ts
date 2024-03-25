@@ -3,11 +3,12 @@ import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { Observable, Observer, Subscription, map } from 'rxjs';
 import { PeriodicElement } from '../../utils/types';
 import { CommonModule } from '@angular/common';
+import { ShortenPipe } from '../../utils/shorten.pipe';
 
 @Component({
   selector: 'app-component-item',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, ShortenPipe],
   templateUrl: './component-item.component.html',
   styleUrl: './component-item.component.css'
 })
