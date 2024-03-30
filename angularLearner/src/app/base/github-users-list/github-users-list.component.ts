@@ -1,5 +1,6 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-github-users-list',
@@ -24,6 +25,33 @@ export class GithubUsersListComponent implements OnInit {
           "X-GitHub-Api-Version": "2022-11-28"
         }
       }).subscribe((data) => {
+        console.log('data: ', data);
+      });
+
+      this.http.delete("https://api.github.com/users?per_page=10", {
+        headers: {
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28"
+        },
+        observe: 'events'
+      })
+      .pipe(tap(event => {
+        console.log(event);
+        if (event.type === HttpEventType.Response) {
+
+        } else if (event.type === HttpEventType.Sent) {
+
+        } else if (event.type === HttpEventType.DownloadProgress) {
+
+        } else if (event.type === HttpEventType.UploadProgress) {
+
+        } else if (event.type === HttpEventType.ResponseHeader) {
+
+        } else if (event.type === HttpEventType.User) {
+
+        }
+      }))
+      .subscribe((data) => {
         console.log('data: ', data);
       });
   }
