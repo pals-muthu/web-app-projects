@@ -8,5 +8,5 @@ var logging_service_1 = require("./services/logging.service");
 var http_1 = require("@angular/common/http");
 var auth_interceptor_service_1 = require("./services/auth-interceptor.service");
 exports.appConfig = {
-    providers: [router_1.provideRouter(app_routes_1.routes), async_1.provideAnimationsAsync(), logging_service_1.LoggingService, { provide: http_1.HTTP_INTERCEPTORS, useClass: auth_interceptor_service_1.AuthInterceptorService, multi: true }]
+    providers: [router_1.provideRouter(app_routes_1.routes), async_1.provideAnimationsAsync(), http_1.provideHttpClient(), logging_service_1.LoggingService, { provide: http_1.HTTP_INTERCEPTORS, useClass: auth_interceptor_service_1.AuthInterceptorService, multi: true }]
 };
