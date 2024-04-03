@@ -21,20 +21,13 @@ const writeToFile = (incomingObject) => {
 	});
 }
 
-const readFile = () => {
-	return fs.readFile(filePath, 'utf8', (err, contents) => {
-		if (err) {
-			console.error(err);
-			return;
-		}
-	
-		try {
-			const jsonString = JSON.parse(contents);
-			return jsonString;
-		} catch (jsonError) {
-			console.error('Error parsing JSON');
-		}
-	});
+const readFile = async () => {
+	const response = await fs.readFile(filePath, 'utf8');
+	console.log('response: ', JSON.parse(response));
+	if (response) {
+		return JSON.parse(response);
+	}
+	return '';
 }
 
 app.use(cors({
