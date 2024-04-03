@@ -28,6 +28,7 @@ export class RecipeFormComponent {
       console.log('value: ', formRef.value);
       this.recipeService.createRecipe(formRef.value).subscribe((res) => {
         console.log('create response: ', res);
+        formRef.reset();
       })
     }
   }

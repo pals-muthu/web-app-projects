@@ -1,5 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable, map } from "rxjs";
+import { RecipeItem } from "../utils/types";
 
 @Injectable()
 export class RecipeService {
@@ -10,10 +12,15 @@ export class RecipeService {
 
   }
 
-  getRecipes () {
-    return this.http.get(this.baseUrl, {
+  getRecipes (): Observable<RecipeItem[]> {
+    return this.http.get<RecipeItem[]>(this.baseUrl, {
       observe: "body"
-    });
+    }).pipe(map(data => {
+      if (data['status'] === 'success' && Object.keys(data['data'] || {}).length) {
+        return Object.values(data['data']);
+      }
+      return data;
+     }));
   }
 
   createRecipe (data: any) {

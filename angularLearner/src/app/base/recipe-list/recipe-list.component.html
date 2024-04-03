@@ -1,6 +1,17 @@
 
 <div>
-  <p>recipe-list works!</p>
+  <div>
+    <h2 *ngIf="recipeList.length; else marker">Recipe Items</h2>
+    <ng-template #marker>
+      <h2>No items to list</h2>
+    </ng-template>
+    <div *ngFor="let item of recipeList">
+      <p>{{item.name}}</p>
+      <p>{{item.description}}</p>
+      <p>{{item.recipe}}</p>
+      <img [src]="item.image" height="150" />
+    </div>
+  </div>
   <hr>
   <h2>Add a recipe</h2>
   <app-recipe-form></app-recipe-form>
