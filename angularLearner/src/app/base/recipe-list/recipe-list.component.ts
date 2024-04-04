@@ -3,11 +3,12 @@ import { RecipeFormComponent } from '../recipe-form/recipe-form.component';
 import { RecipeService } from '../../services/recipe.service';
 import { CommonModule } from '@angular/common';
 import { RecipeItem } from '../../utils/types';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-recipe-list',
   standalone: true,
-  imports: [RecipeFormComponent, CommonModule],
+  imports: [RecipeFormComponent, CommonModule, MatCardModule],
   templateUrl: './recipe-list.component.html',
   styleUrl: './recipe-list.component.css',
   providers: [RecipeService]

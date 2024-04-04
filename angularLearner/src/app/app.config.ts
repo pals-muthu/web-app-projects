@@ -8,6 +8,6 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), LoggingService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}]
+  providers: [provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), LoggingService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}, provideAnimationsAsync()]
 };
 
