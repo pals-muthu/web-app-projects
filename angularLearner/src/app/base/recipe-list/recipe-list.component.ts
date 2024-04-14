@@ -26,5 +26,4 @@ export class RecipeListComponent implements OnInit{
       this.recipeList = data;
     })
   }
-
 }
