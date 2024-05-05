@@ -9,14 +9,13 @@ import { RecipeItem } from "../utils/types";
 export class RecipeService {
 
   baseUrl = 'http://localhost:4110';
-
   constructor (private http: HttpClient) {
 
   }
 
   getRecipes (): Observable<RecipeItem[]> {
-    console.log('getRecipes: ');
     return this.http.get<RecipeItem[]>(this.baseUrl, {
+      params: new HttpParams().set('schema', 'recipe'),
       observe: "body"
     }).pipe(map(data => {
       if (data['status'] === 'success' && Object.keys(data['data'] || {}).length) {
@@ -28,14 +27,15 @@ export class RecipeService {
 
   createRecipe (data: any) {
     return this.http.post(this.baseUrl, data, {
+      params: new HttpParams().set('schema', 'recipe'),
       observe: "body"
     });
   }
 
   getRecipe (id: string) {
-    return this.http.get(this.baseUrl, {
+    return this.http.get(this.baseUrl + `/${id}`, {
+      params: new HttpParams().set('schema', 'recipe'),
       observe: "body",
-      params: new HttpParams({ fromObject: { id } })
     });
   }
 
