@@ -1,0 +1,25 @@
+<form (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
+  <div class="formGroup">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="name" ngModel required #name="ngModel" />
+    <p *ngIf="!name.valid && name.touched">Please enter a valid name </p>
+  </div>
+  <div class="formGroup">
+    <label for="description">Description</label>
+    <input id="description" type="text" name="description" ngModel required />
+    <p *ngIf="!formRef.controls.description.valid && formRef.controls.description.touched">Please enter a valid description</p>
+  </div>
+  <div class="formGroup">
+    <label for="image">Image URL</label>
+    <input id="image" type="text" name="image" ngModel required />
+    <p *ngIf="!formRef.controls.image.valid && formRef.controls.image.touched">Please enter a valid image</p>
+  </div>
+  <div class="formGroup">
+    <label for="recipe">Recipe</label>
+    <textarea id="recipe" name="recipe" ngModel required rows="10" cols="50"></textarea>
+    <p *ngIf="!formRef.controls.recipe.valid && formRef.controls.recipe.touched">Please enter a valid recipe</p>
+  </div>
+  <div class="formGroup">
+    <input type="submit" value="Submit" [disabled]="!formRef.valid" />
+  </div>
+</form>

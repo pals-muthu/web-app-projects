@@ -1,0 +1,24 @@
+
+<div>
+  <div>
+    <h2 *ngIf="recipeList; else marker">Recipe Items</h2>
+    <ng-template #marker>
+      <h2>No items to list</h2>
+    </ng-template>
+    <mat-card class="card" *ngFor="let item of recipeList | async">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>{{item.description}}</mat-card-subtitle>
+          <img mat-card-lg-image [src]="item.image"  [alt]="item.name">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        {{item.recipe}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <hr>
+  <h2>Add a recipe</h2>
+  <app-recipe-form></app-recipe-form>
+</div>

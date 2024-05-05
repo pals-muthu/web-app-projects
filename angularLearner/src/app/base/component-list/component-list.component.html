@@ -1,0 +1,18 @@
+<div>
+  <div>
+    <p #refList> List's content</p>
+  </div>
+  <ng-content></ng-content>
+  <div *ngFor="let item of incomingObject.arr">
+    <div *ngFor="let innerItem of item | keyvalue; let i = index;">
+      <p [class]="i % 2 === 0 ? 'even': 'odd'" ><b>{{innerItem.key}}</b> - {{innerItem.value}}</p>
+      <p *ngIf="i%2 === 0; else evenTemplate" [ngClass]="{'bold': true}">Odd</p>
+      <ng-template #evenTemplate>
+        <p>Even</p>
+      </ng-template>
+      <button mat-stroked-button color="primary" (click)="handleClickEvent($event)">Click Me</button>
+    </div>
+    <input type="number" [(ngModel)]="counterValue" (change)="handleChangeEvent($event)" />
+    <br>
+  </div>
+</div>

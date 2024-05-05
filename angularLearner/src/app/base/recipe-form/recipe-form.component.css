@@ -1,0 +1,8 @@
+.formGroup {
+  margin: 1em;
+  input, textarea {
+    margin-left: 1em;
+  }
+}
+
+
