@@ -7,6 +7,7 @@ import { ReactiveFormComponent } from './base/reactive-form/reactive-form.compon
 import { GithubUsersListComponent } from './base/github-users-list/github-users-list.component';
 import { RecipeListComponent } from './base/recipe-list/recipe-list.component';
 import { SignalComponent } from './base/signals/signal.component';
+import { RecipeReduxComponent } from './base/recipe-redux/recipe-redux.component';
 
 export const routes: Routes = [
   { path: '', component: ComponentItemsComponent, canActivate: [SampleGuard], resolve: { baseData }},
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'new-user', component: ReactiveFormComponent },
   { path: 'github-users', component: GithubUsersListComponent },
   { path: 'recipes', component: RecipeListComponent },
+  { path: 'redux-recipes', component: RecipeReduxComponent },
   { path: 'signals', component: SignalComponent }
 
 ];

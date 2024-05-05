@@ -3,7 +3,9 @@ import { Injectable } from "@angular/core";
 import { Observable, map } from "rxjs";
 import { RecipeItem } from "../utils/types";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RecipeService {
 
   baseUrl = 'http://localhost:4110';
@@ -13,6 +15,7 @@ export class RecipeService {
   }
 
   getRecipes (): Observable<RecipeItem[]> {
+    console.log('getRecipes: ');
     return this.http.get<RecipeItem[]>(this.baseUrl, {
       observe: "body"
     }).pipe(map(data => {
