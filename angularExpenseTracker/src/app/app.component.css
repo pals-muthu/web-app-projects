@@ -1,0 +1,22 @@
+.content-container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 25px;
+}
+
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-nav-list,
+mat-sidenav {
+  height: 100%;
+  visibility: visible !important;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+main {
+  padding: 10px;
+}
