@@ -1,1 +1,20 @@
-<p>add-expense works!</p>
+<form (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
+  <div class="formGroup">
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput name="description" ngModel>
+    </mat-form-field>
+  </div>
+  <div class="formGroup">
+    <mat-form-field>
+      <mat-label>Select</mat-label>
+      <mat-select name="type" ngModel>
+        <mat-option value="misc" selected>Misc</mat-option>
+        <mat-option value="petty">Petty Expenses</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="formGroup">
+    <button mat-raised-button color="accent" type="submit">Submit</button>
+  </div>
+</form>
