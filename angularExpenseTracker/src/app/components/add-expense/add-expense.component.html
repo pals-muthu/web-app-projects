@@ -1,28 +1,29 @@
-<form (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
-  <div class="formGroup">
-    <mat-form-field>
-      <mat-label>Amount</mat-label>
-      <input matInput name="amount" type="number" required ngModel #amount="ngModel">
-      <mat-error *ngIf="!amount.valid && amount.touched">Please enter a valid amount</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="formGroup">
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <input matInput name="description" ngModel>
-    </mat-form-field>
-  </div>
-  <div class="formGroup">
-    <mat-form-field>
-      <mat-label>Select</mat-label>
-      <mat-select name="type" required ngModel #type="ngModel">
-        <mat-option value="misc" selected>Misc</mat-option>
-        <mat-option value="petty">Petty Expenses</mat-option>
-      </mat-select>
-      <mat-error *ngIf="!type.valid && type.touched">Please select a type</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="formGroup">
-    <button mat-raised-button color="accent" type="submit">Submit</button>
-  </div>
-</form>
+<div class="add-form">
+  <form (ngSubmit)="onSubmit(formRef)" #formRef="ngForm">
+    <div class="formGroup">
+      <mat-form-field>
+        <mat-label>Amount</mat-label>
+        <input matInput name="amount" type="number" required ngModel #amount="ngModel">
+        <mat-error *ngIf="!amount.valid && amount.touched">Please enter a valid amount</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput name="description" ngModel>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <mat-form-field>
+        <mat-label>Select</mat-label>
+        <mat-select name="type" required ngModel #type="ngModel" [(ngModel)]="defaultType">
+          <mat-option *ngFor="let item of types" [value]="item.value">{{item.text}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!type.valid && type.touched">Please select a type</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="formGroup">
+      <button mat-raised-button color="accent" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
