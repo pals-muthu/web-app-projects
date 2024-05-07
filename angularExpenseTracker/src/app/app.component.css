@@ -1,9 +1,7 @@
 .content-container {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 25px;
 }
-
 
 mat-sidenav-container,
 mat-sidenav-content,
@@ -14,9 +12,12 @@ mat-sidenav {
 }
 
 mat-sidenav {
-  width: 250px;
+  width: 10%;
 }
 
-main {
-  padding: 10px;
+.min {
+  width: 5%;
+}
+.max {
+  width: 12%;
 }

@@ -4,8 +4,9 @@
     fixedInViewport="true"
     mode="side"
     role="navigation"
-    opened="{{ true }}"
+    opened="true"
     #mtsidenav
+    [class]="isExpanded ? 'max' : 'min'"
   >
     <side-nav
       (toggleMenu)="toggleMenu()"

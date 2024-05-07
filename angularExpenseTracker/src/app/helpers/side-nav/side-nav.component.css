@@ -1,0 +1,21 @@
+
+mat-nav-list a {
+  padding: 0;
+}
+
+.toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.toggle-expanded {
+  align-items:flex-start;
+  margin-left: 1em;
+}
+
+
+

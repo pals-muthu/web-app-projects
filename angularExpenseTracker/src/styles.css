@@ -5,3 +5,7 @@ mat-sidenav[style] {
 .mat-drawer {
   transform: none !important;
 }
+
+body {
+  margin: 0 !important;
+}
