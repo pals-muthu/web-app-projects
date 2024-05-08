@@ -6,6 +6,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { config } from '../../utils/config';
+import { ExpenseService } from '../../services/expense.services';
 
 @Component({
   selector: 'app-add-expense',
@@ -17,13 +18,31 @@ import { config } from '../../utils/config';
 export class AddExpenseComponent implements OnInit {
 
   public types = config.CONSTANTS.TYPES;
-  public defaultType = this.types[0].value;
+  public selectedType = this.types[0].value;
+
+  constructor (private expenseService: ExpenseService) {
+
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(formRef: NgForm) {
     console.log('formRef: ', formRef.value);
+    // TODO - set and export the data type of the expense form
+    // TODO - use pipes to transform the data in the expense form
+    // TODO - add redux state management
+    // TODO - Add toaster and add spinner
+    if (formRef.valid) {
+      this.expenseService.createExpenses(formRef.value).subscribe((res) => {
+        console.log('res: ',this.types[0].value, res);
+        formRef.resetForm()
+        formRef.form.reset()
+        formRef.form.patchValue({
+          type: this.types[0].value
+        })
+      })
+    }
   }
 
 }
