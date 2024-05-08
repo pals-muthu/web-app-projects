@@ -18,6 +18,14 @@ export class ExpenseEffects {
         catchError(() => of({ type : 'expense/error' }))
       ))
     )
-  )
+  );
+
+  addExpense = createEffect(() => this.actions.pipe(
+    ofType('effect/expense/add'),
+    exhaustMap((action) => this.expenseService.createExpenses(action['payload']).pipe(
+      map(expense => ({ type : 'expense/add', payload: expense})),
+      catchError(() => of({ type : 'expense/error' }))
+    ))
+  ));
 
 }

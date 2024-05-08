@@ -20,7 +20,6 @@ export class ExpenseService {
   }
 
   getExpenses (): Observable<ExpenseType[]> {
-    console.log('hitting get expenses')
     return this.http.get<ExpenseType[]>(this.baseURL, {
       headers: { 'Content-Type': 'application/json'},
       params: new HttpParams().set('schema', 'expense'),
@@ -34,16 +33,18 @@ export class ExpenseService {
     )
   }
 
-  createExpenses (body: ExpenseType) {
-    // const res = this.getExpenses();
-    // res.subscribe((response) => {
-    //   console.log('response: ', response);
-    // })
-
-    return this.http.post(this.baseURL, body, {
+  createExpenses (body: ExpenseType): Observable<ExpenseType> {
+    return this.http.post<ExpenseType>(this.baseURL, body, {
       headers: { 'Content-Type': 'application/json'},
       params: new HttpParams().set('schema', 'expense'),
-    });
+    }).pipe(
+      map(res => {
+        if (res['status'] === 'success' && res['data']) {
+          return res['data'];
+        }
+        return res;
+      })
+    )
   }
 
 }

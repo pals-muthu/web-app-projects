@@ -118,5 +118,17 @@
     "amount": 846,
     "description": "231321",
     "type": "petty"
+  },
+  "5cd85e14-3ac5-4874-83bc-5e38a94a2f69": {
+    "id": "5cd85e14-3ac5-4874-83bc-5e38a94a2f69",
+    "amount": 898,
+    "description": "rwrerw",
+    "type": "groceries"
+  },
+  "956a5b57-1b8a-4e8b-a43e-218bb8e73a9f": {
+    "id": "956a5b57-1b8a-4e8b-a43e-218bb8e73a9f",
+    "amount": 111,
+    "description": "test",
+    "type": "electronics"
   }
 }

@@ -8,6 +8,6 @@ const initialExpenseData = [];
 
 export const expenseReducer = createReducer(initialExpenseData, 
   on(fetchExpenses, (state, action) => [...action['payload']]),
-  on(addExpense, (state, action) => [...state, ...action['payload']]),
+  on(addExpense, (state, action) => [...state, action['payload']]),
   on(errorExpense, (state) => state)
 );

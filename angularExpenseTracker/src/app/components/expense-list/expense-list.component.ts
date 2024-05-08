@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ExpenseType } from '../../services/expense.services';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,18 +11,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './expense-list.component.html',
   styleUrl: './expense-list.component.css'
 })
-export class ExpenseListComponent implements OnInit{
+export class ExpenseListComponent implements OnInit, OnDestroy{
 
   expenses: Observable<ExpenseType[]> = this.store.select(state => state.expense);
-  
-  constructor (private store: Store<{expense: ExpenseType[]}>) {
-
-  }
+  subs: Subscription;
+  constructor (private store: Store<{expense: ExpenseType[]}>) {}
 
   ngOnInit(): void {
-    this.store.dispatch({ type: 'effect/expense/fetch' })
+    this.subs = this.expenses.subscribe((expenses) => {
+      if (!expenses.length) {
+        this.store.dispatch({ type: 'effect/expense/fetch' });
+      }
+    });
   }
 
-
-
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
+  }
+  
 }
