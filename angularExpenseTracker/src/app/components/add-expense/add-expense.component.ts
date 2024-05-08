@@ -35,12 +35,11 @@ export class AddExpenseComponent implements OnInit {
     // TODO - Add toaster and add spinner
     if (formRef.valid) {
       this.expenseService.createExpenses(formRef.value).subscribe((res) => {
-        console.log('res: ',this.types[0].value, res);
-        formRef.resetForm()
-        formRef.form.reset()
-        formRef.form.patchValue({
-          type: this.types[0].value
-        })
+        // formRef.resetForm()
+        // formRef.form.reset()
+        // formRef.form.patchValue({
+        //   type: this.types[0].value
+        // })
       })
     }
   }

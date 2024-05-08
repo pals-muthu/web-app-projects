@@ -6,6 +6,10 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideEffects } from '@ngrx/effects';
+import { ExpenseEffects } from './store/expense.effect';
+import { provideStore } from '@ngrx/store';
+import { expenseReducer } from './store/expense.store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +17,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideClientHydration(),
     provideHttpClient(),
-
+    provideStore({
+      expense: expenseReducer
+    }),
+    provideEffects([ExpenseEffects])
   ]
 };

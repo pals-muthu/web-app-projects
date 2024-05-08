@@ -70,5 +70,53 @@
     "amount": 535,
     "description": "fdgdsfg",
     "type": "petty"
+  },
+  "f17a48a6-e3bd-4f92-bae2-c863dbc176ea": {
+    "id": "f17a48a6-e3bd-4f92-bae2-c863dbc176ea",
+    "amount": 85,
+    "description": "Chocolates",
+    "type": "food"
+  },
+  "0124a0ad-9910-4c32-b342-ee9e825fd9ea": {
+    "id": "0124a0ad-9910-4c32-b342-ee9e825fd9ea",
+    "amount": 85,
+    "description": "wafer",
+    "type": "food"
+  },
+  "6b6b70fd-5fb6-458a-9340-2bbed89756b1": {
+    "id": "6b6b70fd-5fb6-458a-9340-2bbed89756b1",
+    "amount": 885,
+    "description": "jam",
+    "type": "groceries"
+  },
+  "443d36f5-5125-4de3-948e-38cbaab4fb42": {
+    "id": "443d36f5-5125-4de3-948e-38cbaab4fb42",
+    "amount": 55,
+    "description": "test",
+    "type": "electronics"
+  },
+  "e7559e70-562d-41a3-ad35-afc2ccbfb5b0": {
+    "id": "e7559e70-562d-41a3-ad35-afc2ccbfb5b0",
+    "amount": 88,
+    "description": "323",
+    "type": "groceries"
+  },
+  "c56c0810-8845-481a-838e-d75966807d47": {
+    "id": "c56c0810-8845-481a-838e-d75966807d47",
+    "amount": 55,
+    "description": "jht76hj",
+    "type": "petty"
+  },
+  "90f18850-5143-489a-a69f-1f4b53c69603": {
+    "id": "90f18850-5143-489a-a69f-1f4b53c69603",
+    "amount": 65,
+    "description": "452",
+    "type": "groceries"
+  },
+  "7420dd59-885e-44af-af75-97684bfee0e1": {
+    "id": "7420dd59-885e-44af-af75-97684bfee0e1",
+    "amount": 846,
+    "description": "231321",
+    "type": "petty"
   }
 }
