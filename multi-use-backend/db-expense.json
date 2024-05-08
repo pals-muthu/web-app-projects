@@ -1,0 +1,74 @@
+{
+  "f1ccd969-7b81-4a30-ab25-94a46dd5f984": {
+    "id": "f1ccd969-7b81-4a30-ab25-94a46dd5f984",
+    "amount": 23,
+    "description": "Milk",
+    "type": "fresh"
+  },
+  "6911028a-e4cd-450b-b9e7-6b5d9807de28": {
+    "id": "6911028a-e4cd-450b-b9e7-6b5d9807de28",
+    "amount": 48,
+    "description": "Biscuits",
+    "type": "groceries"
+  },
+  "db8c0817-e428-4403-9ac9-8be7c26fbc0a": {
+    "id": "db8c0817-e428-4403-9ac9-8be7c26fbc0a",
+    "amount": 59,
+    "description": "Test",
+    "type": "electronics"
+  },
+  "d0081ab8-b567-4774-81d3-cd5d8cf324aa": {
+    "id": "d0081ab8-b567-4774-81d3-cd5d8cf324aa",
+    "amount": 85,
+    "description": "test",
+    "type": "electronics"
+  },
+  "6c915987-3692-4175-9f4b-9fd2b83bd001": {
+    "id": "6c915987-3692-4175-9f4b-9fd2b83bd001",
+    "amount": 65,
+    "description": "test",
+    "type": "food"
+  },
+  "ac717f19-646b-415e-935b-f378d87dacda": {
+    "id": "ac717f19-646b-415e-935b-f378d87dacda",
+    "amount": 89,
+    "description": "rewrw",
+    "type": "food"
+  },
+  "835819b9-7901-4916-bfc8-51abc1534588": {
+    "id": "835819b9-7901-4916-bfc8-51abc1534588",
+    "amount": 545,
+    "description": null,
+    "type": "petty"
+  },
+  "504b7020-93f7-4e5c-a194-23d95c9d5932": {
+    "id": "504b7020-93f7-4e5c-a194-23d95c9d5932",
+    "amount": 4534,
+    "description": "fgdfgdg",
+    "type": "fresh"
+  },
+  "26d54d64-a4cd-4838-b9f4-2a7af6b403f3": {
+    "id": "26d54d64-a4cd-4838-b9f4-2a7af6b403f3",
+    "amount": 4545,
+    "description": "121",
+    "type": "fresh"
+  },
+  "8575942a-03d4-4a3b-80d9-a92c278cbffd": {
+    "id": "8575942a-03d4-4a3b-80d9-a92c278cbffd",
+    "amount": 5646,
+    "description": "werfwefrewsd",
+    "type": "fresh"
+  },
+  "e742f2bc-d442-445f-8a68-c41c4a62217a": {
+    "id": "e742f2bc-d442-445f-8a68-c41c4a62217a",
+    "amount": 6456,
+    "description": "gshfghsfd",
+    "type": "misc"
+  },
+  "5cca2d9d-5f91-4be2-bca4-763d583fe6e1": {
+    "id": "5cca2d9d-5f91-4be2-bca4-763d583fe6e1",
+    "amount": 535,
+    "description": "fdgdsfg",
+    "type": "petty"
+  }
+}

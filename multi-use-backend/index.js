@@ -22,10 +22,8 @@ const writeToFile = (incomingObject, schema) => {
 }
 
 const readFile = async (schema) => {
-	console.log('schema: ', schema);
 	const filePath = schema ? path.join(process.cwd(), `db-${schema}.json`) : path.join(process.cwd(), 'db.json');
 	const response = await fs.readFile(filePath, 'utf8');
-	console.log('response: ', JSON.parse(response));
 	if (response) {
 		return JSON.parse(response);
 	}
