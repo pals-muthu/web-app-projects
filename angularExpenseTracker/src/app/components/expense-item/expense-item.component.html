@@ -1,1 +1,10 @@
-<p>expense-item works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ expenseItem.description ? expenseItem.description + ' - ' + expenseItem.amount : expenseItem.description }} </mat-card-title>
+    <mat-card-subtitle>{{ expenseItem.type }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-button>Edit</button>
+    <button mat-button>Delete</button>
+  </mat-card-actions>
+</mat-card>

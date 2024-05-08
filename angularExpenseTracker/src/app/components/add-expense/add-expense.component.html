@@ -10,7 +10,8 @@
     <div class="formGroup">
       <mat-form-field>
         <mat-label>Description</mat-label>
-        <input matInput name="description" ngModel>
+        <input matInput name="description" required ngModel #description="ngModel">
+        <mat-error *ngIf="!description.valid && description.touched">Please enter a valid description</mat-error>
       </mat-form-field>
     </div>
     <div class="formGroup">

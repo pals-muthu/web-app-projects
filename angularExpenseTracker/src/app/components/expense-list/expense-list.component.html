@@ -1,5 +1,3 @@
-<div>
-  <p *ngFor="let expense of expenses | async">
-    {{expense.amount}}
-  </p>
+<div class="expense-list">
+    <app-expense-item *ngFor="let expense of expenses | async" [expenseItem]="expense"></app-expense-item>
 </div>

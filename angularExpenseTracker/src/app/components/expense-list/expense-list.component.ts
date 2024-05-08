@@ -3,11 +3,12 @@ import { Store } from '@ngrx/store';
 import { ExpenseType } from '../../services/expense.services';
 import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ExpenseItemComponent } from '../expense-item/expense-item.component';
 
 @Component({
   selector: 'app-expense-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ExpenseItemComponent],
   templateUrl: './expense-list.component.html',
   styleUrl: './expense-list.component.css'
 })
