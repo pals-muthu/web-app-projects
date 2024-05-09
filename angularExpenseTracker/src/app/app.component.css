@@ -1,3 +1,8 @@
+.content-container {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
 mat-sidenav-container,
 mat-sidenav-content,
 mat-nav-list,
