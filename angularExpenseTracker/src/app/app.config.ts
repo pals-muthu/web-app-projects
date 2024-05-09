@@ -10,6 +10,7 @@ import { provideEffects } from '@ngrx/effects';
 import { ExpenseEffects } from './store/expense.effect';
 import { provideStore } from '@ngrx/store';
 import { expenseReducer } from './store/expense.store';
+import { generalReducer } from './store/general.store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +19,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     provideStore({
-      expense: expenseReducer
+      expense: expenseReducer,
+      general: generalReducer
     }),
     provideEffects([ExpenseEffects])
   ]
