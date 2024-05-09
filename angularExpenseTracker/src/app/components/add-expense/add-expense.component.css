@@ -11,3 +11,15 @@ form {
   width: fit-content;
   height: fit-content;
 }
+
+mat-card {
+  border: 2px solid #e7e2e2;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 0.25em;
+}
+
+.submit-button {
+  width: 100%;
+}
