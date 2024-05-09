@@ -6,6 +6,10 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+async function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 const writeToFile = (incomingObject, schema) => {
 	let text = JSON.stringify(incomingObject, null, 2);
 	if (text === '""') {
@@ -88,7 +92,8 @@ app.delete('/:id', async (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-	console.log('req: ', req.query);
+	// console.log('req: ', req.query);
+	await sleep(5000);
 	let data = await readFile(req?.query?.schema);
 	res.status(200).send({
 		status: 'success',
@@ -98,7 +103,8 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
 	let data = await readFile(req?.query?.schema);
-	console.log('data: ', data)
+	await sleep(2000);
+	// console.log('data: ', data)
 	if (data === '') {
 		data = {};
 	};
@@ -107,7 +113,7 @@ app.post('/', async (req, res) => {
 		id,
 		...req.body 
 	};
-	console.log('data: ', data)
+	// console.log('data: ', data)
 	await writeToFile(data, req?.query?.schema);
 	res.status(200).send({
 		status: 'success',
