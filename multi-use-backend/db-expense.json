@@ -1,0 +1,16 @@
+{
+  "889d456d-ac65-47df-8f8b-73ef3408d9ec": {
+    "id": "889d456d-ac65-47df-8f8b-73ef3408d9ec",
+    "amount": 150,
+    "description": "Bottle",
+    "type": "petty",
+    "date": "2024-05-09"
+  },
+  "8f78a83b-a1cf-4e01-b3d0-4161222db796": {
+    "id": "8f78a83b-a1cf-4e01-b3d0-4161222db796",
+    "amount": 36,
+    "description": "Eggs",
+    "type": "fresh",
+    "date": "2024-05-09"
+  }
+}

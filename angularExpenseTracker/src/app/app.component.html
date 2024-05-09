@@ -1,0 +1,24 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav
+    #sidenav
+    fixedInViewport="true"
+    mode="side"
+    role="navigation"
+    opened="true"
+    #mtsidenav
+    [class]="isExpanded ? 'max' : 'min'"
+  >
+    <side-nav
+      (toggleMenu)="toggleMenu()"
+      [isExpanded]="isExpanded"
+    ></side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="spinner-div" *ngIf="loader">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

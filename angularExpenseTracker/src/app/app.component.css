@@ -1,0 +1,41 @@
+.content-container {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-nav-list,
+mat-sidenav {
+  height: 100%;
+  visibility: visible !important;
+}
+
+mat-sidenav {
+  width: 10%;
+}
+
+.min {
+  width: 5%;
+}
+.max {
+  width: 12%;
+}
+
+.spinner-div {
+  background: #ffffff;
+  width:      100% !important;
+  height:     100% !important;
+  z-index:    10;
+  position:   fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-spinner {
+  width: 3em !important;
+  height: 3em !important;
+  top: -1.5em;
+  left: -3em;
+}

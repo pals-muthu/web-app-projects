@@ -1,0 +1,25 @@
+<section [class.sidenav]="isExpanded">
+  <div class="toggle" (click)="toggleMenu.emit(null)">
+    <mat-icon [fontIcon]="isExpanded ? 'arrow_back' : 'apps'"></mat-icon>
+  </div>
+  <mat-nav-list [class]="isExpanded ? 'toggle toggle-expanded' : 'toggle'">
+    <div>
+      <a
+        mat-list-item
+        *ngFor="let route of routeLinks"
+        routerLinkActive="active-link"
+        class="hover"
+        routerLink="{{ route.link }}"
+      >
+        <mat-icon
+          mat-list-icon
+          *ngIf="!isExpanded"
+          matTooltipPosition="right"
+        >
+          {{ route.icon }}</mat-icon
+        >
+        <p matLine *ngIf="isExpanded">{{ route.name }}</p>
+      </a>
+    </div>
+  </mat-nav-list>
+</section>

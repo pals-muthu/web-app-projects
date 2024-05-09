@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+mat-sidenav[style] {
+  visibility: visible !important;
+}
+
+.mat-drawer {
+  transform: none !important;
+}
+
+body, html {
+  margin: 0 !important;
+  padding: 0 !important;
+}

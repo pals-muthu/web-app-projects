@@ -6,12 +6,16 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const filePath = path.join(process.cwd(), 'db.json');
-const writeToFile = (incomingObject) => {
+async function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const writeToFile = (incomingObject, schema) => {
 	let text = JSON.stringify(incomingObject, null, 2);
 	if (text === '""') {
 		text = '';
 	}
+	const filePath = schema ? path.join(process.cwd(), `db-${schema}.json`) : path.join(process.cwd(), 'db.json');
 	return fs.writeFile(filePath, text, (err) => {
 		if (err) {
 			console.error(err);
@@ -21,9 +25,9 @@ const writeToFile = (incomingObject) => {
 	});
 }
 
-const readFile = async () => {
+const readFile = async (schema) => {
+	const filePath = schema ? path.join(process.cwd(), `db-${schema}.json`) : path.join(process.cwd(), 'db.json');
 	const response = await fs.readFile(filePath, 'utf8');
-	console.log('response: ', JSON.parse(response));
 	if (response) {
 		return JSON.parse(response);
 	}
@@ -38,7 +42,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 app.get('/:id', async (req, res) => {
-	let data = await readFile();
+	let data = await readFile(req?.query?.schema);
 	if (req.params.id && data[req.params.id]) {
 		res.status(200).send({
 			status: 'success',
@@ -52,13 +56,13 @@ app.get('/:id', async (req, res) => {
 });
 
 app.put('/:id', async (req, res) => {
-	let data = await readFile();
+	let data = await readFile(req?.query?.schema);
 	if (req.params.id && data[req.params.id]) {
 		data[req.params.id] = {
 			id: req.params.id,
 			...req.body 
 		}
-		await writeToFile(data);
+		await writeToFile(data, req?.query?.schema);
 		res.status(200).send({
 			status: 'success',
 			data: data[req.params.id]
@@ -72,10 +76,10 @@ app.put('/:id', async (req, res) => {
 
 
 app.delete('/:id', async (req, res) => {
-	let data = await readFile();
+	let data = await readFile(req?.query?.schema);
 	if (req.params.id && data[req.params.id]) {
 		delete data[req.params.id];
-		await writeToFile(data);
+		await writeToFile(data, req?.query?.schema);
 		res.status(200).send({
 			status: 'success',
 			data: data[req.params.id]
@@ -88,7 +92,9 @@ app.delete('/:id', async (req, res) => {
 });
 
 app.get('/', async (req, res) => {
-	let data = await readFile();
+	// console.log('req: ', req.query);
+	await sleep(2000);
+	let data = await readFile(req?.query?.schema);
 	res.status(200).send({
 		status: 'success',
 		data
@@ -96,8 +102,9 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/', async (req, res) => {
-	let data = await readFile();
-	console.log('data: ', data)
+	let data = await readFile(req?.query?.schema);
+	await sleep(2000);
+	// console.log('data: ', data)
 	if (data === '') {
 		data = {};
 	};
@@ -106,8 +113,8 @@ app.post('/', async (req, res) => {
 		id,
 		...req.body 
 	};
-	console.log('data: ', data)
-	await writeToFile(data);
+	// console.log('data: ', data)
+	await writeToFile(data, req?.query?.schema);
 	res.status(200).send({
 		status: 'success',
 		data: data[id]
@@ -116,7 +123,7 @@ app.post('/', async (req, res) => {
 
 app.delete('/', async (req, res) => {
 	let data = '';
-	await writeToFile(data);
+	await writeToFile(data, req?.query?.schema);
 	res.status(200).send({
 		status: 'success'
 	});
