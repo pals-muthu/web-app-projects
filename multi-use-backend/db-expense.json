@@ -1,44 +1,16 @@
 {
-  "f1ccd969-7b81-4a30-ab25-94a46dd5f984": {
-    "id": "f1ccd969-7b81-4a30-ab25-94a46dd5f984",
-    "amount": 23,
-    "description": "Milk",
-    "type": "fresh"
-  },
-  "6911028a-e4cd-450b-b9e7-6b5d9807de28": {
-    "id": "6911028a-e4cd-450b-b9e7-6b5d9807de28",
-    "amount": 48,
-    "description": "Biscuits",
-    "type": "groceries"
-  },
-  "f17a48a6-e3bd-4f92-bae2-c863dbc176ea": {
-    "id": "f17a48a6-e3bd-4f92-bae2-c863dbc176ea",
-    "amount": 85,
-    "description": "Chocolates",
-    "type": "food"
-  },
-  "0124a0ad-9910-4c32-b342-ee9e825fd9ea": {
-    "id": "0124a0ad-9910-4c32-b342-ee9e825fd9ea",
-    "amount": 85,
-    "description": "wafer",
-    "type": "food"
-  },
-  "6b6b70fd-5fb6-458a-9340-2bbed89756b1": {
-    "id": "6b6b70fd-5fb6-458a-9340-2bbed89756b1",
-    "amount": 885,
-    "description": "jam",
-    "type": "groceries"
-  },
-  "e4ea13b4-5b51-4266-a79a-ee9135f15a93": {
-    "id": "e4ea13b4-5b51-4266-a79a-ee9135f15a93",
-    "amount": 36,
-    "description": "eggs",
-    "type": "fresh"
-  },
-  "254e6bee-666c-42db-9514-4b80a63dcaec": {
-    "id": "254e6bee-666c-42db-9514-4b80a63dcaec",
+  "889d456d-ac65-47df-8f8b-73ef3408d9ec": {
+    "id": "889d456d-ac65-47df-8f8b-73ef3408d9ec",
     "amount": 150,
     "description": "Bottle",
-    "type": "misc"
+    "type": "petty",
+    "date": "2024-05-09"
+  },
+  "8f78a83b-a1cf-4e01-b3d0-4161222db796": {
+    "id": "8f78a83b-a1cf-4e01-b3d0-4161222db796",
+    "amount": 36,
+    "description": "Eggs",
+    "type": "fresh",
+    "date": "2024-05-09"
   }
 }

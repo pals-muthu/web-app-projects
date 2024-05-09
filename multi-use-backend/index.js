@@ -93,7 +93,7 @@ app.delete('/:id', async (req, res) => {
 
 app.get('/', async (req, res) => {
 	// console.log('req: ', req.query);
-	await sleep(5000);
+	await sleep(2000);
 	let data = await readFile(req?.query?.schema);
 	res.status(200).send({
 		status: 'success',

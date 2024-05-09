@@ -26,6 +26,13 @@
           </mat-form-field>
         </div>
         <div class="formGroup">
+          <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput name="date" type="date" [(ngModel)]="selectedDate" required ngModel #date="ngModel">
+            <mat-error *ngIf="!date.valid && date.touched">Please enter a valid date</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="formGroup">
           <button mat-raised-button color="accent" type="submit" class="submit-button">Submit</button>
         </div>
       </form>

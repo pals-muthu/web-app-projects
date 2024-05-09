@@ -7,7 +7,6 @@ import {MatCardModule} from '@angular/material/card';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { config } from '../../utils/config';
-import { ExpenseService } from '../../services/expense.services';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -21,8 +20,9 @@ export class AddExpenseComponent implements OnInit {
 
   public types = config.CONSTANTS.TYPES;
   public selectedType = this.types[0].value;
+  public selectedDate = (new Date()).toISOString().split('T')[0];
 
-  constructor (private expenseService: ExpenseService, private store: Store) {
+  constructor (private store: Store) {
 
   }
 
@@ -30,8 +30,12 @@ export class AddExpenseComponent implements OnInit {
   }
 
   onSubmit(formRef: NgForm) {
-    console.log('formRef: ', formRef.value);
-    // TODO - Add toaster and add spinner
+    // console.log('formRef: ', formRef.value);
+    // TODO - Add toaster
+    // TODO - Add light and dark mode switcher
+    // TODO - Re-use this component for edit page
+    // TODO - Add dialog for delete expense
+    // TODO - Add responsive design
     if (formRef.valid) {
       this.store.dispatch({ type: 'effect/expense/add', payload: formRef.value})
       formRef.resetForm()

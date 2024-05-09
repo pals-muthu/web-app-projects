@@ -12,6 +12,10 @@ form {
   height: fit-content;
 }
 
+.formGroup {
+  margin: 0.3em;
+}
+
 mat-card {
   border: 2px solid #e7e2e2;
 }
