@@ -78,17 +78,18 @@ app.put('/:id', async (req, res) => {
 app.delete('/:id', async (req, res) => {
 	let data = await readFile(req?.query?.schema);
 	if (req.params.id && data[req.params.id]) {
+		const dataItem = data[req.params.id];
 		delete data[req.params.id];
 		await writeToFile(data, req?.query?.schema);
 		res.status(200).send({
 			status: 'success',
-			data: data[req.params.id]
+			data: dataItem
+		});
+	} else {
+		res.status(404).send({
+			status: 'not found',
 		});
 	}
-	res.status(404).send({
-		status: 'not found',
-		data: data[req.params.id]
-	});
 });
 
 app.get('/', async (req, res) => {

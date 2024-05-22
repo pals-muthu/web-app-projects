@@ -41,7 +41,8 @@ export class AddExpenseComponent implements OnInit {
       formRef.resetForm()
       formRef.form.reset()
       formRef.form.patchValue({
-        type: this.types[0].value
+        type: this.types[0].value,
+        date: (new Date()).toISOString().split('T')[0]
       })
     }
   }

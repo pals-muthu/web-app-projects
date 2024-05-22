@@ -6,6 +6,7 @@ export interface ExpenseType {
   amount: Number,
   description: String,
   type: String
+  id: String
 }
 
 @Injectable({
@@ -36,6 +37,19 @@ export class ExpenseService {
   createExpenses (body: ExpenseType): Observable<ExpenseType> {
     return this.http.post<ExpenseType>(this.baseURL, body, {
       headers: { 'Content-Type': 'application/json'},
+      params: new HttpParams().set('schema', 'expense'),
+    }).pipe(
+      map(res => {
+        if (res['status'] === 'success' && res['data']) {
+          return res['data'];
+        }
+        return res;
+      })
+    )
+  }
+
+  deleteExpense (id: String): Observable<ExpenseType> {
+    return this.http.delete<ExpenseType>(this.baseURL + `/${id}`, {
       params: new HttpParams().set('schema', 'expense'),
     }).pipe(
       map(res => {

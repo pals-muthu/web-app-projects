@@ -1,16 +1,23 @@
 {
-  "889d456d-ac65-47df-8f8b-73ef3408d9ec": {
-    "id": "889d456d-ac65-47df-8f8b-73ef3408d9ec",
-    "amount": 150,
+  "ccbbc8e6-18ee-4759-9cea-7370c80eb0fd": {
+    "id": "ccbbc8e6-18ee-4759-9cea-7370c80eb0fd",
+    "amount": 165,
     "description": "Bottle",
-    "type": "petty",
-    "date": "2024-05-09"
+    "type": "misc",
+    "date": "2024-05-22"
   },
-  "8f78a83b-a1cf-4e01-b3d0-4161222db796": {
-    "id": "8f78a83b-a1cf-4e01-b3d0-4161222db796",
-    "amount": 36,
+  "3f3a610e-d36f-4430-aa44-8302cb64027b": {
+    "id": "3f3a610e-d36f-4430-aa44-8302cb64027b",
+    "amount": 42,
     "description": "Eggs",
+    "type": "groceries",
+    "date": "2024-05-22"
+  },
+  "204da54a-bb79-4492-a704-0647bb684e51": {
+    "id": "204da54a-bb79-4492-a704-0647bb684e51",
+    "amount": 210,
+    "description": "Apples",
     "type": "fresh",
-    "date": "2024-05-09"
+    "date": "2024-05-22"
   }
 }

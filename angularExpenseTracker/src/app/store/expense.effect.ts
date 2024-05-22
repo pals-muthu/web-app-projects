@@ -40,4 +40,17 @@ export class ExpenseEffects {
     )})
   ));
 
+  deleteExpense = createEffect(() => this.actions.pipe(
+    ofType('effect/expense/delete'),
+    exhaustMap((action) => {
+      this.loader.turnOnLoader();
+      return this.expenseService.deleteExpense(action['payload']).pipe(
+      map(expense => ({ type : 'expense/delete', payload: expense})),
+      catchError(() => of({ type : 'expense/error' })),
+      finalize(() => {
+        this.loader.turnOffLoader();
+      })
+    )})
+  ));
+
 }

@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ExpenseType } from '../../services/expense.services';
+import { ExpenseService, ExpenseType } from '../../services/expense.services';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-expense-item',
@@ -14,8 +15,16 @@ export class ExpenseItemComponent implements OnInit {
 
   @Input() expenseItem: ExpenseType;
 
+  constructor (private store: Store) {
+
+  }
+
   ngOnInit(): void {
 
+  }
+
+  public deleteAction(): void {
+    this.store.dispatch({ type: 'effect/expense/delete', payload: this.expenseItem.id})
   }
 
 }
