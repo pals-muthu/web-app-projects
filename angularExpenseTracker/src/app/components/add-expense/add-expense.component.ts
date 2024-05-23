@@ -8,6 +8,9 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { config } from '../../utils/config';
 import { Store } from '@ngrx/store';
+import { ActivatedRoute } from '@angular/router';
+import { ExpenseType } from '../../services/expense.services';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-expense',
@@ -21,12 +24,18 @@ export class AddExpenseComponent implements OnInit {
   public types = config.CONSTANTS.TYPES;
   public selectedType = this.types[0].value;
   public selectedDate = (new Date()).toISOString().split('T')[0];
+  public isEdit = false;
 
-  constructor (private store: Store) {
+  constructor (private store: Store<{expense: ExpenseType[]}>, private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      console.log('params: ', params['id']);
+      // fetch data by id and then show it here
+
+    })
   }
 
   onSubmit(formRef: NgForm) {

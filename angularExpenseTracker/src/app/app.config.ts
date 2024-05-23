@@ -9,7 +9,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideEffects } from '@ngrx/effects';
 import { ExpenseEffects } from './store/expense.effect';
 import { provideStore } from '@ngrx/store';
-import { expenseReducer } from './store/expense.store';
+import { expenseReducer, currentExpenseReducer } from './store/expense.store';
 import { generalReducer } from './store/general.store';
 
 export const appConfig: ApplicationConfig = {
@@ -20,7 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore({
       expense: expenseReducer,
-      general: generalReducer
+      general: generalReducer,
+      currentExpense: currentExpenseReducer
     }),
     provideEffects([ExpenseEffects])
   ]

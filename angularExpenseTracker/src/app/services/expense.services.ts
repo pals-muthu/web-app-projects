@@ -34,8 +34,36 @@ export class ExpenseService {
     )
   }
 
+  getExpense (id: String): Observable<ExpenseType> {
+    return this.http.get<ExpenseType>(this.baseURL + `/${id}`, {
+      headers: { 'Content-Type': 'application/json'},
+      params: new HttpParams().set('schema', 'expense'),
+    }).pipe(
+      map(res => {
+        if (res['status'] === 'success' && res['data']) {
+          return res['data'];
+        }
+        return res;
+      })
+    )
+  }
+
   createExpenses (body: ExpenseType): Observable<ExpenseType> {
     return this.http.post<ExpenseType>(this.baseURL, body, {
+      headers: { 'Content-Type': 'application/json'},
+      params: new HttpParams().set('schema', 'expense'),
+    }).pipe(
+      map(res => {
+        if (res['status'] === 'success' && res['data']) {
+          return res['data'];
+        }
+        return res;
+      })
+    )
+  }
+
+  editExpense (id: String, body: ExpenseType): Observable<ExpenseType> {
+    return this.http.put<ExpenseType>(this.baseURL + `/${id}`, body, {
       headers: { 'Content-Type': 'application/json'},
       params: new HttpParams().set('schema', 'expense'),
     }).pipe(

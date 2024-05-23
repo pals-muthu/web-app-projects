@@ -53,4 +53,32 @@ export class ExpenseEffects {
     )})
   ));
 
+  getExpense = createEffect(() => this.actions.pipe(
+    ofType('effect/expense/get'),
+    exhaustMap((action) => {
+      this.loader.turnOnLoader();
+      return this.expenseService.getExpense(action['payload']).pipe(
+      map(expense => ({ type : 'expense/get', payload: expense})),
+      catchError(() => of({ type : 'expense/error' })),
+      finalize(() => {
+        this.loader.turnOffLoader();
+      })
+    )})
+  ));
+
+  editExpense = createEffect(() => this.actions.pipe(
+    ofType('effect/expense/edit'),
+    exhaustMap((action) => {
+      this.loader.turnOnLoader();
+      return this.expenseService.editExpense(action['payload']['id'], action['payload']['body']).pipe(
+      map(expense => ({ type : 'expense/edit', payload: expense})),
+      catchError(() => of({ type : 'expense/error' })),
+      finalize(() => {
+        this.loader.turnOffLoader();
+      })
+    )})
+  ));
+
+
+
 }

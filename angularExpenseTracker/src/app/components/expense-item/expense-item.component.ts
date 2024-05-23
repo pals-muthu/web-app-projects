@@ -3,6 +3,7 @@ import { ExpenseService, ExpenseType } from '../../services/expense.services';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-expense-item',
@@ -15,7 +16,7 @@ export class ExpenseItemComponent implements OnInit {
 
   @Input() expenseItem: ExpenseType;
 
-  constructor (private store: Store) {
+  constructor (private store: Store, private router: Router) {
 
   }
 
@@ -25,6 +26,10 @@ export class ExpenseItemComponent implements OnInit {
 
   public deleteAction(): void {
     this.store.dispatch({ type: 'effect/expense/delete', payload: this.expenseItem.id})
+  }
+
+  public editAction (): void {
+    this.router.navigateByUrl(`/edit-expense/${this.expenseItem.id}`);
   }
 
 }
