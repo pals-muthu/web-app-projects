@@ -5,7 +5,9 @@ import { StatusBar } from 'expo-status-bar';
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
 import AllExpenses from './screens/AllExpenses';
-import { GlobalStyles } from './constants/styles';
+import { GlobalStyles } from './util/styles';
+import { Ionicons } from '@expo/vector-icons';
+import IconButton from './components/UI/IconButton';
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -23,6 +25,8 @@ const linking = {
 };
 
 const ExpensesOverview = () => {
+	const onAddPress = () => {};
+
 	return (
 		<BottomTabs.Navigator
 			screenOptions={{
@@ -30,10 +34,25 @@ const ExpensesOverview = () => {
 				headerTintColor: 'white',
 				tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
 				tabBarActiveTintColor: GlobalStyles.colors.accent500,
+				headerRight: ({ tintColor }) => <IconButton onPress={onAddPress} size={24} color={tintColor} icon="add" />,
 			}}
 		>
-			<BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} options={{ title: 'Recent Expenses' }} />
-			<BottomTabs.Screen name="AllExpenses" component={AllExpenses} options={{ title: 'All Expenses' }} />
+			<BottomTabs.Screen
+				name="RecentExpenses"
+				component={RecentExpenses}
+				options={{
+					title: 'Recent Expenses',
+					tabBarIcon: ({ color, size }) => <Ionicons name="hourglass" size={size} color={color} />,
+				}}
+			/>
+			<BottomTabs.Screen
+				name="AllExpenses"
+				component={AllExpenses}
+				options={{
+					title: 'All Expenses',
+					tabBarIcon: ({ color, size }) => <Ionicons name="calendar" size={size} color={color} />,
+				}}
+			/>
 		</BottomTabs.Navigator>
 	);
 };
