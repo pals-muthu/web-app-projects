@@ -2,11 +2,13 @@ import { FlatList, View, Text, StyleSheet, Pressable } from 'react-native';
 import { GlobalStyles } from '../../util/styles';
 import { getFormattedDate } from '../../util/date';
 
-const expenseItem = (expenseItem) => {
-	const onItemPress = () => {};
+const expenseItem = (navigate, expenseItem) => {
+	const onItemPress = (id, evt) => {
+		navigate('ManageExpense', { id });
+	};
 
 	return (
-		<Pressable style={({ pressed }) => pressed && styles.pressed} onPress={onItemPress}>
+		<Pressable style={({ pressed }) => pressed && styles.pressed} onPress={onItemPress.bind(this, expenseItem.item.id)}>
 			<View style={styles.cardItem}>
 				<View>
 					<Text style={[styles.textBase, styles.description]}>{expenseItem.item.description}</Text>
@@ -20,7 +22,7 @@ const expenseItem = (expenseItem) => {
 	);
 };
 
-const ExpenseOutput = ({ expenses, expensePeriod }) => {
+const ExpenseOutput = ({ expenses, expensePeriod, navigate }) => {
 	const sum = expenses.reduce((sum, expense) => {
 		return sum + expense.amount;
 	}, 0);
@@ -30,7 +32,7 @@ const ExpenseOutput = ({ expenses, expensePeriod }) => {
 				<Text style={styles.period}>Period: {expensePeriod}</Text>
 				<Text style={styles.total}>Total: {sum.toFixed(2)}</Text>
 			</View>
-			<FlatList data={expenses} keyExtractor={(item) => item.id} renderItem={expenseItem} />
+			<FlatList data={expenses} keyExtractor={(item) => item.id} renderItem={expenseItem.bind(this, navigate)} />
 		</View>
 	);
 };
