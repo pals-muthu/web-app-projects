@@ -22,17 +22,24 @@ const expenseItem = (navigate, expenseItem) => {
 	);
 };
 
-const ExpenseOutput = ({ expenses, expensePeriod, navigate }) => {
+const ExpenseOutput = ({ expenses, expensePeriod, navigate, fallbackText }) => {
 	const sum = expenses.reduce((sum, expense) => {
 		return sum + expense.amount;
 	}, 0);
+
+	let content = <Text style={styles.infoText}>{fallbackText}</Text>;
+	if (expenses.length) {
+		content = (
+			<FlatList data={expenses} keyExtractor={(item) => item.id} renderItem={expenseItem.bind(this, navigate)} />
+		);
+	}
 	return (
 		<View style={styles.outerContainer}>
 			<View style={styles.summaryContainer}>
 				<Text style={styles.period}>Period: {expensePeriod}</Text>
 				<Text style={styles.total}>Total: {sum.toFixed(2)}</Text>
 			</View>
-			<FlatList data={expenses} keyExtractor={(item) => item.id} renderItem={expenseItem.bind(this, navigate)} />
+			{content}
 		</View>
 	);
 };
@@ -99,5 +106,11 @@ const styles = StyleSheet.create({
 	amount: {
 		color: GlobalStyles.colors.primary500,
 		fontWeight: 'bold',
+	},
+	infoText: {
+		color: 'white',
+		fontSize: 16,
+		textAlign: 'center',
+		marginTop: 32,
 	},
 });

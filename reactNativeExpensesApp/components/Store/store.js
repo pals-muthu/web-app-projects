@@ -45,7 +45,8 @@ const expensesReducer = (state, action) => {
 		case 'ADD':
 			return [{ ...action.payload, id: Math.random().toString() }, ...state];
 		case 'DELETE':
-			return state.filter((expense) => expense.id !== action.payload);
+			console.log('delete action: ', action);
+			return [...state.filter((expense) => expense.id !== action.payload)];
 		case 'UPDATE':
 			const updateExpenseId = state.findIndex((expense) => expense.id === action.payload.id);
 			const expenseData = { ...state[updateExpenseId], ...action.payload.data };
@@ -63,12 +64,12 @@ const ExpensesContextProvider = ({ children }) => {
 		dispatch({ type: 'ADD', payload: expenseData });
 	};
 
-	const updateExpense = (id) => {
-		dispatch({ type: 'UPDATE', payload: id });
+	const updateExpense = (id, expenseData) => {
+		dispatch({ type: 'UPDATE', payload: { id, data: expenseData } });
 	};
 
-	const deleteExpense = (id, expenseData) => {
-		dispatch({ type: 'DELETE', payload: { id, data: expenseData } });
+	const deleteExpense = (id) => {
+		dispatch({ type: 'DELETE', payload: id });
 	};
 
 	const value = {
