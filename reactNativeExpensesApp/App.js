@@ -9,6 +9,7 @@ import { GlobalStyles } from './util/styles';
 import { Ionicons } from '@expo/vector-icons';
 import IconButton from './components/UI/IconButton';
 import ExpensesContextProvider from './components/Store/store';
+import { Text } from 'react-native';
 
 const Stack = createStackNavigator();
 const BottomTabs = createBottomTabNavigator();
