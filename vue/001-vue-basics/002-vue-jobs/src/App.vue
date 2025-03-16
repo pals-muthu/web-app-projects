@@ -1,8 +1,12 @@
-<script setup></script>
+<script setup>
+import Navbar from './components/NavbarHeader.vue'
+
+import { RouterView } from 'vue-router'
+</script>
 
 <template>
-  <h3>Vue Jobs</h3>
-  <button class="bg-sky-500 hover:bg-sky-700">Hello</button>
+  <Navbar />
+  <RouterView />
 </template>
 
 <style></style>
